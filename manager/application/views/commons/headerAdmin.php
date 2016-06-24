@@ -10,7 +10,7 @@
 			<title><?php echo $title; ?></title>
 
 		    <?php
-			    echo link_tag(base_url().'assets/plugins/bootstrap/css/bootstrap.min.css') . "\n";
+			    echo link_tag(base_url().'assets/plugins/bootstrap/css/bootstrap.css') . "\n";
 			    // <!-- CSS Implementing Plugins -->
                 echo link_tag(base_url().'assets/plugins/sb-admin/metisMenu.min.css') . "\n";
                 echo link_tag(base_url().'assets/plugins/sb-admin/timeline.css') . "\n";
@@ -20,7 +20,7 @@
 			   // echo link_tag(base_url().'assets/plugins/line-icons/line-icons.css') . "\n";
 			    echo link_tag(base_url().'assets/plugins/font-awesome/css/font-awesome.min.css') . "\n";
 			   // <!-- CSS Theme -->
-			  //  echo link_tag(base_url().'assets/css/style.css') . "\n"; 
+			   echo link_tag(base_url().'assets/css/styleAdmin.css') . "\n"; 
 			   // echo link_tag(base_url().'assets/css/themes/orange.css') . "\n";
 			   // echo link_tag(base_url(). 'assets/css/headers/scrollHeader.css') . "\n";
 
@@ -47,7 +47,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbarbrand" href="<?= base_url()?>">
+                    <img src="<?php echo base_url(); ?>assets/img/logo_pp.png" alt="Logo">
+                </a>
             </div>
             <!-- /.navbar-header -->
 

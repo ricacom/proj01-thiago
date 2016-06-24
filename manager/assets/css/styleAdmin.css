@@ -1,0 +1,80 @@
+
+
+
+.navbar-default {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+#side-menu > li{
+    border-color: #800000;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #D95347;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  background-color: #800000;
+  color:#FFF;
+}
+
+.sidebar ul li a.focus 
+.sidebar ul li a.active {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.dropdown-menu,  .dropdown-messages > li a:hover,
+.dropdown-menu,  .dropdown-messages > li a:active{ 
+  color: #FFF;
+  background-color: #D95347;
+  border-color: #E74C3C;
+}
+
+.dropdown-menu,  .dropdown-messages > li {
+  color: #FFF;
+  background-color: #E74C3C;
+  border-color: #e74c3c;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:hover {
+ 	background-color: #D95347;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+ 	background-color: #D95347;
+}
+.navbar-top-links .dropdown-menu li a {
+    background-color: #E74C3C;
+}
+
+.navbar-top-links .dropdown-menu li a:hover {
+        color: #FFF;
+}
+
+.dropdown-menu .divider {
+    background-color: #800000;
+	color: #E74C3C;
+}
+.text-muted{
+	color: #800000;
+}
+
+#wrapper{
+	 background-color: #E74C3C;
+}
+
+
+.navbarbrand{
+	margin-left: 100px;
+}
