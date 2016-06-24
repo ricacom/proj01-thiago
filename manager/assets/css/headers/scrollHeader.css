@@ -1,0 +1,95 @@
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    min-width: 940px;
+}
+body p {
+    margin-top: 8px;
+}
+body ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.main {
+
+    margin: 0 auto;
+    width: 900px;
+}
+.banner {
+    background-color: #f9f9f9;
+    color: #000;
+ 
+
+}
+.title {
+    font-size: 140%;
+    font-weight: bold;
+}
+.header {
+    
+    background-color: #eee;
+    font-size: 24px;
+    padding: 10px; 
+    
+}
+.header.scroll-to-fixed-fixed {
+    background: url("../../img/logo_pp.png") no-repeat 23% 0;
+    background-color: #CCC;
+    font-size: 24px;
+    color: #000;
+    
+
+}
+.content {
+    padding: 20px;
+    overflow: hidden;
+}
+.footer {
+    background-color: #eee;
+    padding: 20px;
+    clear: both;
+}
+.footer.scroll-to-fixed-fixed {
+    color: red;
+}
+.footer-content {
+    background-color: #aaa;
+    padding: 20px;
+}
+.demos li {
+    margin-bottom: 20px;
+}
+.left {
+    float: left;
+    width: 680px;
+}
+.right {
+    float: left;
+    margin-left: 40px;
+}
+.summary {
+    border: 1px solid #dddddd;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: white;
+}
+.summary .caption {
+    border-bottom: 1px solid #dddddd;
+    background-color: #dddddd;
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 5px;
+}
+.summary.scroll-to-fixed-fixed {
+    margin-top: 0px;
+}
+.summary.scroll-to-fixed-fixed .caption {
+    color: red;
+}
+.contents {
+    width: 150px;
+    margin: 10px;
+    font-size: 80%;
+}

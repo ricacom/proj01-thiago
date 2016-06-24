@@ -1,0 +1,50 @@
+.navbar-default {
+   /* background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);*/
+   background: #5e5e5e;;
+    border-bottom: medium none;
+    border-top: 2px solid #333399;
+    box-shadow: 0 0 3px #b5b5b5;
+}
+
+.block-min{
+    min-height: 600px;
+}
+.subtitle_top_m { 
+    margin-left: -244px;
+    margin-top: 40px;
+    width: 180px;
+    float:left;
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    display: none;
+}
+.ui-widget-content{
+    background: #FFF;
+    border: none;
+    
+}
+
+button[type="button"]{
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+    
+
+-moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.bt-mini{
+    padding: 0px;
+}

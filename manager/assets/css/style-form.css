@@ -1,0 +1,38 @@
+#moldura{
+  width: 1024px;
+  margin: 0 auto; 
+}
+.tag-box {margin-top:150px;}
+.ajustebtn{margin-top:30px; }
+.box-sexo {
+    
+    float: left;
+    height: 75px;
+    width: 50%;
+}
+.box-radio {
+    float: left;
+    height: 75px;
+    width: 25%;
+}
+.sexo{ padding: 5px;}
+
+.top_negative{margin-top: -10px; margin-bottom: 20px;}
+
+#btn-upload{ 
+    float: left;
+    margin-left: 385px;
+    margin-top: -33px;
+}
+.colorhr{
+	display: block; height: 1px;
+    border: 0; border-top: 1px solid #EEE;
+    padding: 0;
+	color: #AEAEAE;
+	margin-bottom: 15px;
+}
+.contact, .contact a {
+color: #777;
+}
+
+.form_custom{ margin-top: 20px; float: right;}
