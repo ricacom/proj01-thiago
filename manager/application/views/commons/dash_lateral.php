@@ -1,8 +1,17 @@
 <div class="left-inner">
                         <h3>Clinica Novo Horizonte</h3>
                         <span class="font-s">Medicina Nuclear</span>   <br><br> 
-                        <img alt="" src="<?= base_url()?>assets/img/clients/thiago.png">
-                            <p class="color-blue">Logado como: <span>Dr. Thiago Dutra</span><br><span class="color-red"> Administrador </span></p>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img alt="" src="<?= base_url()?>assets/img/clients/thiago.png">
+                            </div>
+                            <div class="col-md-9">
+                                Logado como: <br><span>Dr. Thiago Dutra</span><br><span class="color-red"> Administrador </span>
+                            </div>
+
+                        </div>
+
                         <hr>
 
                         <ul class="list-unstyled save-job">

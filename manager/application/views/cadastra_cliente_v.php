@@ -4,14 +4,14 @@
 
 <!-- Begin Content -->
 
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+
 
         <div class="tag-box tag-box-v3 margin-bottom-40 block-min">
                 <!-- Titlulo da SUB-pagina -->
-           
-    		
-
 <!-- DADOS CONTATO -->
-			
 				<h3> <i class="icon-custom rounded-x icon-bg-u fa fa-user"></i>Cadastro  </h3>
 					<!-- <form role="form"> -->
 					<?php echo form_open('cadastra_cliente/grava');
@@ -22,8 +22,8 @@
 					$mphone 		=  array('name' => 'mphone', 	'id'=>'mphone','placeholder' => 'Telefone móvel',			'class' => 'form-control', 'value' => set_value('mphone') );
 					$idade 		=  array('name' => 'idade', 	'id'=>'datapicker','placeholder' => 'Idade', 		'class' => 'form-control', 'value' => set_value('idade') );
 					$email 			=  array('name' => 'email', 	'id'=>'email','placeholder' => 'E-mail', 'type' => 'email',	'class' => 'form-control', 'value' => set_value('email') );
-					//$password 		=  array('name' => 'fullname', 'placeholder' => 'Nome completo', 'class' => 'form-control', 'value' => set_value('fullname') );
-					
+
+
 					// (Nome , email , telefone , senha , Data de nascimento ou idade  )
 
 					?>
@@ -45,6 +45,8 @@
 									<input type="radio" name="sexo" class="sexo" value="M" <?php echo set_radio('sexo', 'M')?>/>Masculino
 									<?php //echo form_radio($sexom, set_radio('sexo', 'M')); ?> 
 								</label>
+							</div>
+							<div class="col-md-3 mrg">
 							</div>
 
 							<div class="clearfix"></div>
@@ -117,7 +119,10 @@
 						</div> <!-- close row -->
 					</form>
 
-			
+</div>
+  <div class="col-md-2">
+  </div>
+</div>
 <!-- CLOSE DADOS -->
 	<?php
 		$error = validation_errors();

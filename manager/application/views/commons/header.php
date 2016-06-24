@@ -30,6 +30,7 @@
 
 			?>
 			<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jquery/jquery.min.js' ?>"></script>
+
 			<script type="text/javascript" src="<?php echo base_url().'assets/js/plugins/jquery-scrolltofixed.js' ?>"></script>
 			<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -38,15 +39,10 @@
 		</head>
 
 
-   
-    <!--=== End Header ===-->
-
-  
-
+   <!--=== End Header ===-->
 
 <script>
     $(document).ready(function() {
-      
         $('.header').scrollToFixed();
         $('.footer').scrollToFixed( {           bottom: 0,            limit: $('.footer').offset().top        });
 
@@ -72,49 +68,33 @@
     });
 </script>
 </head>
-<body>
+<body> <!-- class="servive-block-red" -->
     <ul>
         <li class="banner">
-            <div class="main">
-            	
+            <div class="main servive-block-red">
             	<div class="row">
             	  <div class="col-md-4 text-right">
             	  	<img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo">
             	  </div>
             	  <div class="col-md-4">
-            	  	
             	  </div>
             	  <div class="col-md-4">
             	  	<div class="text-right">		  </div>
             	  </div>
-            	  
             	</div>
-            	
             </div>
         </li>
         <li class="header">
             <div class="main">
-            	
-
-            <div class="row">
-              <div class="col-md-6">
-              	
-              </div>
-              <div class="col-md-6">
-              <div class="text-center">	<?= $assunto; ?></div>
-              	
-              </div>
-              
-            </div>
-            
-            	
-			    
-            	
-            		
-            	
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="text-center">	<?= $assunto; ?></div>
+                    </div>
+                </div>
             </div>
         </li>
-        <li class="content main">
+        <li class="content ">
 
 
 
