@@ -43,7 +43,11 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+if($_SERVER['SERVER_NAME'] == 'dev.local'){
+	$config['index_page'] = 'index.php';
+}else{
+	$config['index_page'] = 'index.php?';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +64,11 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
-
+if($_SERVER['SERVER_NAME'] == 'dev.local'){
+	$config['uri_protocol']	= 'REQUEST_URI';
+}else{
+	$config['uri_protocol']	= 'QUERY_STRING';
+}
 /*
 |--------------------------------------------------------------------------
 | URL suffix
