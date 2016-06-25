@@ -38,12 +38,12 @@
 							<div class="col-md-3 mrg">
 								<span class="color-red">* </span><label  for="sexo">Sexo</label><br>
 								<label class="radio-inline">
-									 <?php// echo form_radio($sexof, set_radio('sexo', 'F')); ?> 
+									 
 									<input type="radio" name="sexo" class="sexo" value="F" <?php echo set_radio('sexo', 'F')?> />Feminino
 								</label>
 								<label class="radio-inline">
 									<input type="radio" name="sexo" class="sexo" value="M" <?php echo set_radio('sexo', 'M')?>/>Masculino
-									<?php //echo form_radio($sexom, set_radio('sexo', 'M')); ?> 
+									
 								</label>
 							</div>
 							<div class="col-md-3 mrg">
