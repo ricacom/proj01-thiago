@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Aprovação de Telas</title>
 
 	<style type="text/css">
 
@@ -62,23 +62,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 10px;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
+		width:50%;
+		margin: 30px auto;
 	}
 	</style>
 </head>
 <body>
+<?php echo link_tag(base_url().'assets/plugins/bootstrap/css/bootstrap.css') . "\n"; ?>
 
 <div id="container">
-	<h1>Welcome to Agath!</h1>
+	<h1>Welcome to <br><img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo"></h1>
 
 	<div id="body">
-		<a href="<?=base_url('cadastra_cliente') ?>"> Tela de cadastro </a>
-		<br>
-		<a href="<?=base_url('loga_cliente') ?>"> Tela de login </a>
-		<br>
-		<a href="<?=base_url('dashboard') ?>"> Tela Dashboard Clinica </a>
-		<br>
-		<a href="<?=base_url('dashboardAdmin') ?>"> Tela Dashboard Admin </a>
-		<br>
+		<a class="btn btn-success" href="<?=base_url('cadastra_cliente') ?>"> Tela de cadastro </a>
+		
+		<a class="btn btn-success" href="<?=base_url('loga_cliente') ?>"> Tela de login </a>
+		 
+		<a class="btn btn-success" href="<?=base_url('dashboard') ?>"> Tela Dashboard Clinica </a>
+		 
+		<a class="btn btn-success" href="<?=base_url('dashboardAdmin') ?>"> Tela Dashboard Admin </a>
+		 
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
