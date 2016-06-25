@@ -30,7 +30,7 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 	$config['base_url']	= 'http://dev.local/agath/manager/';	
 	//$config['base_url']	= 'http://localhost/safesite.dev/dev/landpage';	
 }else{
-	$config['base_url']	= 'http://agath.com.br/site/';
+	$config['base_url']	= 'http://ricacom.com.br/agath/manager/';
 }
 
 /*

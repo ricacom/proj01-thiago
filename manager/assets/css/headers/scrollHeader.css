@@ -52,7 +52,10 @@ body ul {
     clear: both;
 }
 .footer.scroll-to-fixed-fixed {
-    color: red;
+    background-color: #CCC;
+    font-size: 14px;
+    color: #000;
+    clear: both;
 }
 .footer-content {
     background-color: #aaa;
