@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$config['base_url'] = 'http://dev.local:8080/exemplos-livro-ci/site-institucional';
 if($_SERVER['SERVER_NAME'] == 'dev.local'){
 //if($_SERVER['SERVER_NAME'] == 'localhost'){
-	$config['base_url']	= 'http://dev.local/agath/manager/';	
+	$config['base_url']	= 'http://dev.local:8080/proj01-thiago/manager/';	
 	//$config['base_url']	= 'http://localhost/safesite.dev/dev/landpage';	
 }else{
 	$config['base_url']	= 'http://ricacom.com.br/agath/manager/';
