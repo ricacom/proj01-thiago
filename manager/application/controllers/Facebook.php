@@ -47,6 +47,8 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 		}
 
 		function login_callback(){
+			require_once(APPPATH.'../../vendor/autoload.php'); 
+			
 			//var_dump($_REQUEST); die;
 			# login-callback.php
 		$fb = new Facebook\Facebook([
