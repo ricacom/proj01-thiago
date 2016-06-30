@@ -41,6 +41,8 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 		$loginUrl = $helper->getLoginUrl(base_url('Facebook/login_callback'), $permissions);
 
 		echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+
+		echo "<br>".base_url('Facebook/login_callback');
 	
 		}
 
