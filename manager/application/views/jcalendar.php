@@ -4,10 +4,12 @@
 <link href='<?php echo base_url()?>assets/plugins/jcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 
 <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lib/moment.min.js' ?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lang/pt-br.js' ?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/fullcalendar.min.js' ?>"></script>
 
-<script>
+<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/fullcalendar.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/config/config-calendar.js' ?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lang/pt-br.js' ?>"></script>
+
+<!--script>
 
 	$(document).ready(function() {
 		$('#calendar').fullCalendar({
@@ -75,7 +77,7 @@
 		
 	});
 
-</script>
+</script -->
 
 </head>
 <body>
