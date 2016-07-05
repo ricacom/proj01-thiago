@@ -13,11 +13,11 @@ $(function(){
     });  // Timepicker
 
     //var base_url='http://dev.local/fullcalendar/'; // Here i define the base_url
-   // var base_url='http://dev.local/agath/manager/'; // Here i define the base_url
+    //var base_url='http://dev.local/agath/manager/'; // Here i define the base_url
     //var base_url = '<?php echo $urlsite; ?>';
-    var currentLocation = window.location.href;
-    //console.log(currentLocation);
-    var base_url = currentLocation + '/../';
+    var currentLocation = window.location.origin;
+   //console.log(currentLocation);
+    var base_url = currentLocation + '/agath/manager/';
 
 
     // Fullcalendar
