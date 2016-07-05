@@ -1,3 +1,4 @@
+
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css' rel='stylesheet' />
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -62,7 +63,10 @@
                 color: #fff;
             }
             .spaceleft{margin-left: 37px;}
+           
         </style>
+
+         
             <div class="row clearfix">
                 <div class="col-md-12 column">
                 <div class='col-xs-3 col-md-3 spaceleft'>
@@ -75,7 +79,7 @@
                     </select>
 
                 </div>
-                        <div id='calendar' ></div>
+                        <div id='calendar'></div>
                 </div>
             </div>
        

@@ -11,7 +11,11 @@ $(function(){
         showMeridian: false
     });  // Timepicker
 
-    var base_url='http://dev.local/fullcalendar/'; // Here i define the base_url
+    //var base_url='http://dev.local/fullcalendar/'; // Here i define the base_url
+   // var base_url='http://dev.local/agath/manager/'; // Here i define the base_url
+    //var base_url = '<?php echo $urlsite; ?>';
+    var base_url = '../';
+
 
     // Fullcalendar
     $('#calendar').fullCalendar({
