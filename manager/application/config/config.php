@@ -68,7 +68,7 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 if($_SERVER['SERVER_NAME'] == 'dev.local'){
 	$config['uri_protocol']	= 'REQUEST_URI';
 }else{
-	$config['uri_protocol']	= 'QUERY_STRING';
+	$config['uri_protocol']	= 'AUTO';
 }
 /*
 |--------------------------------------------------------------------------
