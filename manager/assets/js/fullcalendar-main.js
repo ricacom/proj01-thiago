@@ -33,7 +33,7 @@ $(function(){
         slotDuration: '00:15:00',
         eventLimit: true, // allow "more" link when too many events
         events: base_url+'Calendar/getEvents',
-
+        
         // Handle Day Click
         dayClick: function(date, event, view) {
             currentDate = date.format();
