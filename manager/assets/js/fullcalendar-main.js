@@ -32,7 +32,7 @@ $(function(){
         // Get all events stored in database
         slotDuration: '00:15:00',
         eventLimit: true, // allow "more" link when too many events
-        events: base_url+'calendar/getEvents',
+        events: base_url+'Calendar/getEvents',
 
         // Handle Day Click
         dayClick: function(date, event, view) {
@@ -55,7 +55,7 @@ $(function(){
          eventDrop: function(event, delta, revertFunc) {  
 
             
-               $.post(base_url+'calendar/dragUpdateEvent',{                            
+               $.post(base_url+'Calendar/dragUpdateEvent',{                            
                 id:event.id,
                 date: event.start.format()
             }, function(result){
