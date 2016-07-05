@@ -37,6 +37,31 @@ class Calendar extends CI_Model{
 		return $events;
 	}
 
+	function get_eventCalendarDetail(){
+		//var_dump($id);
+		//$this->db->where('id', $id);
+		$query = $this->db->get('calendar');
+		$this->db->order_by('startdate', 'ASC');
+		//return $query->result_array();
+		$events = array();
+		foreach ($query->result() as $row) {
+			$events[] = array(
+            'id' 			=> $row->id,
+			'title' 		=> $row->title,
+			'start' 		=> $row->startdate,
+			'end' 			=> $row->enddate,
+			'allDay' 		=> $row->allDay,
+			'user' 			=> $row->user,
+			);
+		}
+
+		return $events;
+		
+	}
+
+
+
+
 
 	function up_eventCalendar($dt){
 		//var_dump($dt); die;

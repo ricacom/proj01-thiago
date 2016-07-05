@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <title>Full Calendar CRUD</title>
-        <meta charset='utf-8' />
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css' rel='stylesheet' />
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -19,16 +14,18 @@
 
         <script src='<?php echo base_url();?>assets/js/bootstrap-colorpicker.min.js'></script>
         <script src='<?php echo base_url();?>assets/js/bootstrap-timepicker.min.js'></script>
-        <script src='<?php echo base_url();?>assets/js/main.js'></script>
+        <script src='<?php echo base_url();?>assets/js/fullcalendar-main.js'></script>
         <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lang/pt-br.js' ?>"></script>
         <style>
-
+/*
             body {
                 margin: 40px 10px;
                 padding: 0;
                 font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+
+
                 font-size: 14px;
-            }
+            }*/
             .fc th {
                 padding: 10px 0px;
                 vertical-align: middle;
@@ -38,7 +35,7 @@
                 padding: 4px;
             }
             #calendar {
-                max-width: 900px;
+                max-width: 90%;
                 margin: 0 auto;
             }
             .error {
@@ -64,22 +61,29 @@
                 background-color: #3A87AD;
                 color: #fff;
             }
+            .spaceleft{margin-left: 37px;}
         </style>
-    </head>
-    <body>
-
-        <div class="container">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                        <div id='calendar'></div>
+                <div class='col-xs-3 col-md-3 spaceleft'>
+                    <select class="form-control">
+                      <option>Clínica Reviva</option>
+                      <option>Dr.Roberto</option>
+                      <option>Dra.Kátia</option>
+                      <option>Dr.Manoel</option>
+                      <option>Dra.Cristina</option>
+                    </select>
+
+                </div>
+                        <div id='calendar' ></div>
                 </div>
             </div>
-        </div>
+       
         <div class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
                         <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
@@ -111,22 +115,22 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="description">Description</label>
+                                <label class="col-md-4 control-label" for="description">Descrição</label>
                                 <div class="col-md-4">
                                     <textarea class="form-control" id="description" name="description"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="color">Color</label>
+                                <label class="col-md-4 control-label" for="color">Cor</label>
                                 <div class="col-md-4">
                                     <input id="color" name="color" type="text" class="form-control input-md" readonly="readonly" />
-                                    <span class="help-block">Click to pick a color</span>
+                                    <span class="help-block">Escolha um cor</span>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,8 @@
 				var user = 1;
 				var start = event.start.format("YYYY-MM-DD[T]HH:mm:SS");
 				$.ajax({
-		    		url: 'processEventReceive.php',
+		    		//url: 'processEventReceive.php',
+		    		url: 'Dashboard/eventReceive',
 		    		data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone,
 		    		type: 'POST',
 		    		dataType: 'json',

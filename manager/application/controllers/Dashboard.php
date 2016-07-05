@@ -38,12 +38,15 @@ class Dashboard extends CI_Controller {
 
 
 	function get_calendar_data(){
-		if($this->input->post('type') == 'fetch'){
+		//if($this->input->post('type') == 'fetch'){
 			//FROM LIBRARY - FULLCALENDAR
-			$events	= $this->fullcalendar->get_eventCalendar();
-			//$events	= $this->calendar->get_eventCalendar();
+			
+			//$events	= $this->fullcalendar->get_eventCalendar();
+			$events	= $this->calendar->get_eventCalendarDetail();
+			//$events	= $this->calendar->get_eventCalendar(); //get_eventCalendarDetail
+			//array_push($events, $e);
 			echo json_encode($events);
-		}
+	//	}
 
 	}
 
@@ -67,6 +70,26 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+
+	function eventReceive(){
+		if($this->input->post('type') == 'changetitle'){
+
+			$id = (int)$this->input->post('eventid', TRUE);
+			$dataUpdate = array(
+				'id' 		=> $id,
+				'title' 	=> $this->input->post('title', TRUE),
+			);
+
+			$isUpdate = $this->fullcalendar->up_eventCalendar($dataUpdate);
+
+			if($isUpdate){
+				echo json_encode(array('status'=>'success'));
+			}else{
+				echo json_encode(array('status'=>'failed'));
+			}
+
+		}
+	}
 
 
 
