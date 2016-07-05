@@ -1,3 +1,13 @@
+      <?php 
+                if($_SERVER['SERVER_NAME'] == 'ricacom.com.br'){
+                    $urlsite = 'http://ricacom.com.br/agath/manager/dashboard'; 
+                }
+                 if($_SERVER['SERVER_NAME'] == 'dev.local'){
+                    $urlsite = 'http://dev.local/agath/manager/'; 
+                }
+          ?>
+
+
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css' rel='stylesheet' />

@@ -1,3 +1,4 @@
+
 $(function(){
 
     var currentDate; // Holds the day clicked when adding a new event
@@ -14,7 +15,9 @@ $(function(){
     //var base_url='http://dev.local/fullcalendar/'; // Here i define the base_url
    // var base_url='http://dev.local/agath/manager/'; // Here i define the base_url
     //var base_url = '<?php echo $urlsite; ?>';
-    var base_url = '../';
+    var currentLocation = window.location.href;
+    //console.log(currentLocation);
+    var base_url = currentLocation + '../';
 
 
     // Fullcalendar
