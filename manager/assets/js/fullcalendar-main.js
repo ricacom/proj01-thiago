@@ -17,7 +17,7 @@ $(function(){
     //var base_url = '<?php echo $urlsite; ?>';
     var currentLocation = window.location.href;
     //console.log(currentLocation);
-    var base_url = currentLocation + '../';
+    var base_url = currentLocation + '/../';
 
 
     // Fullcalendar
