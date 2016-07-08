@@ -22,7 +22,8 @@ $(function(){
 
     // Fullcalendar
     $('#calendar').fullCalendar({
-        timeFormat: 'H(:mm)',
+   // var noTZ = $.fullCalendar.moment.parseZone('2016-07-01T12:00:00');
+       timeFormat: 'H(:mm)',
         header: {
             left: 'prev, next, today',
             center: 'title',
@@ -32,6 +33,8 @@ $(function(){
         // Get all events stored in database
         slotDuration: '00:15:00',
         eventLimit: true, // allow "more" link when too many events
+        editable: false,
+        droppable: false,
         events: base_url+'Calendar/getEvents',
         
         // Handle Day Click
@@ -50,12 +53,12 @@ $(function(){
                 title: 'Novo Evento (' + date.format() + ')' // Modal title
             });
         },
-   
-          editable: true, // Make the event draggable true 
-         eventDrop: function(event, delta, revertFunc) {  
 
-            
-               $.post(base_url+'Calendar/dragUpdateEvent',{                            
+   
+          editable: false, // Make the event draggable true 
+         eventDrop: function(event, delta, revertFunc) {
+
+               $.post(base_url+'Calendar/dragUpdateEvent',{
                 id:event.id,
                 date: event.start.format()
             }, function(result){
@@ -119,6 +122,15 @@ $(function(){
 
     });
 
+function splitString(string){
+    var str = string.split(" ")[1].slice(0, -3);
+  
+  // var hora = str.split(":").slice(0)+ ":" + str.split(":").slice(1);
+  // var h = hora.split(":").slice(0) ;
+   return str;
+
+}
+
     // Prepares the modal window according to data passed
     function modal(data) {
         // Set modal title
@@ -131,14 +143,23 @@ $(function(){
             // When adding set timepicker to current time
             var now = new Date();
             var time = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes());
+            // var start = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes());
+            // var end = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes());
         } else {
             // When editing set timepicker to event's time
+          //  console.log(data.event.start);
+          //  console.log(data.event.start._locale._longDateFormat.LT);
             var time = data.event.date.split(' ')[1].slice(0, -3);
+            var start = splitString(data.event.start._i);
+            var end = splitString(data.event.end._i);
+
             time = time.charAt(0) === '0' ? time.slice(1) : time;
+           
         }
        // $('#time').val(time);
-        $('#starttime').val(time);
-        $('#endtime').val(time);
+        //$('#starttime').val(data.event.start._i);
+        $('#starttime').val(start);
+        $('#endtime').val(end);
         $('#description').val(data.event ? data.event.description : '');
         $('#color').val(data.event ? data.event.color : '#3a87ad');
         // Create Butttons
@@ -170,10 +191,12 @@ $(function(){
     // Handle click on Update Button
     $('.modal').on('click', '#update-event',  function(e){
         if(validator(['title', 'description'])) {
-            $.post(base_url+'calendar/updateEvent', {
+            $.post(base_url+'Calendar/updateEvent', {
                 id: currentEvent._id,
                 title: $('#title').val(),
                 description: $('#description').val(),
+                start: currentEvent.date.split(' ')[0]  + ' ' + $('#starttime').val() + ':00',
+                end: currentEvent.date.split(' ')[0]  + ' ' + $('#endtime').val() + ':00',
                 color: $('#color').val(),
                 date: currentEvent.date.split(' ')[0]  + ' ' +  getTime()
             }, function(result){
@@ -213,3 +236,5 @@ $(function(){
         return true;
     }
 });
+
+

@@ -23,6 +23,7 @@ class Calendar extends CI_Controller {
 	Public function getEvents()
 	{
 		$result=$this->Calendar_model->getEvents();
+		//var_dump(json_encode($result););
 		echo json_encode($result);
 	}
 	/*Add new event */
@@ -34,8 +35,10 @@ class Calendar extends CI_Controller {
 	/*Update Event */
 	Public function updateEvent()
 	{
+		//var_dump($_REQUEST); die;
 		$result=$this->Calendar_model->updateEvent();
 		echo $result;
+		//var_dump($result); die;
 	}
 	/*Delete Event*/
 	Public function deleteEvent()

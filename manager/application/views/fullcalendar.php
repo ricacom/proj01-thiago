@@ -1,21 +1,10 @@
-      <?php 
-                if($_SERVER['SERVER_NAME'] == 'ricacom.com.br'){
-                    $urlsite = 'http://ricacom.com.br/agath/manager/dashboard'; 
-                }
-                 if($_SERVER['SERVER_NAME'] == 'dev.local'){
-                    $urlsite = 'http://dev.local/agath/manager/'; 
-                }
-          ?>
-
-
-
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css' rel='stylesheet' />
         <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.print.css' rel='stylesheet' media='print' />
         <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet" />
         
         <link href="<?php echo base_url();?>assets/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
-        <link href="<?php echo base_url();?>assets/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+        
 
         <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js'></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -23,8 +12,11 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
 
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.4/jquery.timepicker.min.css">
+        
+
         <script src='<?php echo base_url();?>assets/js/bootstrap-colorpicker.min.js'></script>
-        <script src='<?php echo base_url();?>assets/js/bootstrap-timepicker.min.js'></script>
+        
         <script src='<?php echo base_url();?>assets/js/fullcalendar-main.js'></script>
         <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lang/pt-br.js' ?>"></script>
         <style>
@@ -67,6 +59,7 @@
                 font-size: 11px;
 
             }
+           
             .modal-header
             {
                 background-color: #3A87AD;
@@ -116,15 +109,16 @@
                                 </div>
                             </div> -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="starttime">Data Inicial</label>
-                                <div class="col-md-4 input-append bootstrap-timepicker">
-                                    <input id="starttime" name="starttime" type="text" class="form-control input-md" />
+                                <label class="col-md-4 control-label" for="starttime">Hora Inicial</label>
+                                <div class="col-md-4">
+                                    <input id="starttime"  name="starttime" type="text" class="form-control input-md timepicker" />
                                 </div>
+
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="endtime">Data Final</label>
-                                <div class="col-md-4 input-append bootstrap-timepicker">
-                                    <input id="endtime" name="endtime" type="text" class="form-control input-md" />
+                                <label class="col-md-4 control-label" for="endtime">Hora Final</label>
+                                <div class="col-md-4">
+                                    <input id="endtime"  name="endtime" type="text" class="form-control input-md timepicker" />
                                 </div>
                             </div>
 
@@ -152,5 +146,19 @@
     </body>
 </html>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.4/jquery.timepicker.min.js"></script> <!-- TimePicker -->
 
 
+  <script type="text/javascript">
+               $('.timepicker').timepicker({
+                    timeFormat: 'H:mm',
+                    interval: 15,
+                    minTime: '8',
+                    maxTime: '18:00',
+                    defaultTime: '11',
+                    startTime: '8:00',
+                    dynamic: false,
+                    dropdown: true,
+                    scrollbar: true
+                });
+            </script>

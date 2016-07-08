@@ -36,20 +36,20 @@ class Dashboard extends CI_Controller {
 
 	}
 
-
+/*
 	function get_calendar_data(){
 		//if($this->input->post('type') == 'fetch'){
 			//FROM LIBRARY - FULLCALENDAR
 			
 			//$events	= $this->fullcalendar->get_eventCalendar();
-			$events	= $this->calendar->get_eventCalendarDetail();
+		//	$events	= $this->calendar->get_eventCalendarDetail();
 			//$events	= $this->calendar->get_eventCalendar(); //get_eventCalendarDetail
 			//array_push($events, $e);
-			echo json_encode($events);
+		//	echo json_encode($events);
 	//	}
 
 	}
-
+*/
 	function eventClick(){
 		if($this->input->post('type') == 'changetitle'){
 

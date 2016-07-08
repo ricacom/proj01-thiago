@@ -27,6 +27,9 @@
 
 
 
+<!-- <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/config/config-calendar.js' ?>"></script>
+ -->
+
 <script type="text/javascript">//SUBMIT CADASTRA CLIENTE
       $("#btn_submit").click(function(){
        // alert('Ricacom');
@@ -185,6 +188,21 @@ $(function(){
 
 
 
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.4/jquery.timepicker.min.js"></script> <!-- TimePicker -->
+        <script type="text/javascript">
+            $('.timepicker').timepicker({
+                timeFormat: 'H:mm',
+                interval: 60,
+                minTime: '10',
+                maxTime: '6:00pm',
+                defaultTime: '11',
+                startTime: '10:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        </script>
 
 
 

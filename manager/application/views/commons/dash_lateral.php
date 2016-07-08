@@ -93,7 +93,7 @@
                         <!-- Pie Chart Progress Bar -->    
                         <div class="row margin-bottom-20">
                             <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
-                                <h3>Agendamentos realizados</h3>
+                                <h4>Agendamentos realizados</h4>
                                 <div class="progress progress-striped active">
                                     <div style="width: 60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-success">
                                         
@@ -106,7 +106,7 @@
                                 </ul>
                             </div> 
                             <div class="p-chart col-sm-6 col-xs-6">
-                                <h3>Agendamentos pendentes</h3>
+                                <h4>Agendamentos pendentes</h4>
                                 <div class="progress progress-striped active">
                                     <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
                                         
