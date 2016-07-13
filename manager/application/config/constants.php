@@ -83,3 +83,21 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+
+/*------CUSTOM CONSTANTS ----------*/
+
+//LOG
+
+define('LOG_ID_LOGIN_SUCCESS',		'200');
+define('LOG_ID_LOGIN_FAIL',			'404');
+define('LOG_ID_LOGOUT',				'600');
+define('LOG_MSG_LOGIN_SUCCESS',		'Login realizado com sucesso');
+define('LOG_MSG_LOGIN_FAIL',		'Falha no login');
+define('LOG_MSG_LOGOUT',			'Logout realizado');
+
+
+
+//LOGIN 
+define('UNIQUE_SALT', '7rRicardoRicacom&n()!caL*dC#OMF4Jesus');

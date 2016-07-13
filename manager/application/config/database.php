@@ -80,7 +80,7 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => 'rootpw',
-		'database' => 'calendar',
+		'database' => 'agath',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

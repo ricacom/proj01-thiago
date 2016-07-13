@@ -13,11 +13,11 @@ class Dashboard extends CI_Controller {
 		$this->load->model(array('calendar'));	//MODEL
 		$this->load->library(array('logged','session', 'fullcalendar'));
 		
-		/*$this->lang->load('login','pt-br');				// Language
-		$this->lang->load('user','pt-br');	
-		$this->lang->load('cliente','pt-br');			// Language MENU
-		*/
-		//$this->logged->is_logged_in_user(); 			//Is USER Logged?
+		//$this->lang->load('login','pt-br');				// Language
+		//$this->lang->load('user','pt-br');	
+		//$this->lang->load('cliente','pt-br');			// Language MENU
+		
+		$this->logged->is_logged_in_user(); 			//Is USER Logged?
 	}
 
 

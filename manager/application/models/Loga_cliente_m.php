@@ -32,7 +32,7 @@ class Loga_cliente_m extends CI_Model{
 		//var_dump($status); die;
 
 		$this->db->where($status);
-		$query = $this->db->get('clientes');
+		$query = $this->db->get('users');
 		$row = $query->row(1);
 
 		//var_dump($row); die();
@@ -46,7 +46,7 @@ class Loga_cliente_m extends CI_Model{
 			'email' 			=> trim($email), 
 		);
 		$this->db->where($status);
-		$query = $this->db->get('clientes');
+		$query = $this->db->get('users');
 		$row = $query->row(1);
 
 		//var_dump($row->password); die();
@@ -63,7 +63,7 @@ class Loga_cliente_m extends CI_Model{
 			'email' 			=> trim($email), 
 		);
 		$this->db->where($status);
-		$query = $this->db->get('clientes');
+		$query = $this->db->get('users');
 		$row = $query->row(1);
 
 		//var_dump($row->password); die();
@@ -101,7 +101,7 @@ function confirma_link_ativacao($cod){ //Checa se codigo existe
 			'cod_ativacao' 			=> trim($cod), 
 		);
 		$this->db->where($cod);
-		$query = $this->db->get('clientes');
+		$query = $this->db->get('users');
 		$row = $query->row(1);
 	//		var_dump($row->id); die();
 		if($row){
@@ -119,7 +119,7 @@ function ativa_cliente_novo($id_cliente){
 		);
 	//var_dump($aData); die;
 		$this->db->where('id', $id_cliente);
-		$doUP = $this->db->update('clientes', $aData);
+		$doUP = $this->db->update('users', $aData);
 		if($doUP){
 			return TRUE;
 		}else{

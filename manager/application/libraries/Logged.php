@@ -26,8 +26,9 @@ class Logged {
 
 		$is_logged_in = $this->ci->session->userdata('id_cliente');
 		if(!isset($is_logged_in) || $is_logged_in != true)
-		{
-			redirect('/loga_cliente/index/2', 'refresh');
+		{	
+			$this->ci->session->set_userdata('msg_login', '2');
+			redirect('loga_cliente', 'refresh');
 			die();
 		}
 	}

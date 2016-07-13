@@ -7,7 +7,8 @@
         <li class="footer-content">
             <div class="main">
                 <h2>John 3:16</h2>
-                <p>For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.</p>           
+                <p>For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.</p>   
+                <?php var_dump($this->session->userdata()); ?>       
             </div>
         </li>
     </ul>
@@ -25,20 +26,15 @@
 <script type="text/javascript" src="<?php echo base_url().'assets/plugins/back-to-top.js' ?>"></script>
 <script type="text/javascript" src="<?php echo base_url().'assets/plugins/smoothScroll.js' ?>"></script>
 
-
-
-<!-- <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/config/config-calendar.js' ?>"></script>
- -->
-
 <script type="text/javascript">//SUBMIT CADASTRA CLIENTE
-      $("#btn_submit").click(function(){
-       // alert('Ricacom');
-        $("#msg_process").show();
+  $("#btn_submit").click(function(){
+   // alert('Ricacom');
+    $("#msg_process").show();
 
-      });
-    </script>
-  
-    <script type="text/javascript" src="<?php echo base_url() . 'assets/js/plugins/jquery.mask.min.js' ?>"></script>
+  });
+</script>
+
+    <!-- script type="text/javascript" src="<?php echo base_url() . 'assets/js/plugins/jquery.mask.min.js' ?>"></script>
     <script type="text/javascript">
       $(document).ready(function(){
       $('.date').mask('11/11/1111');
@@ -54,7 +50,7 @@
      // $('.mixed').mask('AAA 000-S0S');
   });
 
-</script>
+</script -->
 <script type="text/javascript">
   $(".bt_pessoa").click(function(){
       $(".msg_pessoa").hide('slow');

@@ -13,7 +13,6 @@ class Loga_cliente extends CI_Controller{
 	function index(){
 		$data['title'] = "Agath | Login ";
 		$this->load->view('loga_cliente_v', $data);
-
 	}
 
 	function check_credentials(){
@@ -22,7 +21,6 @@ class Loga_cliente extends CI_Controller{
 
 		if ($this->form_validation->run() == FALSE){
 			 $this->load->view('loga_cliente_v');
-			
 		}
 		else{
 
@@ -52,7 +50,7 @@ class Loga_cliente extends CI_Controller{
 
 				if($gravaLog AND $gravaSession){
 					//sucesso no login
-					redirect('maincliente', 'refresh');
+					redirect('dashboard', 'refresh');
 
 				}else{
 					//var_dump($this->session->all_userdata());
@@ -70,7 +68,8 @@ class Loga_cliente extends CI_Controller{
 				//GravalOG
 				$gravaLog = $this->mylog->writeLoginFail($aDataLog);
 				//echo " Usuário e/ou senha incorreta!";
-				redirect('loga_cliente/index/1', 'refresh');
+				$this->session->set_userdata('msg_login', '1');
+				redirect('loga_cliente', 'refresh');
 			}
 		} //Fecha ELSE FORM Validation
 	}// CLose method check_credentials
@@ -86,16 +85,16 @@ class Loga_cliente extends CI_Controller{
 			$aDataLog = array(
 					'cod' 				=> LOG_ID_LOGOUT,
 					'msg' 				=> LOG_MSG_LOGOUT,
-					'idUser'			=> $this->session->userdata('id_conta_acesso'),
+					'idUser'			=> $this->session->userdata('id_cliente'),
 				);
 
 		$gravaLog = $this->mylog->writeLog($aDataLog);
 
-		// DEstroi as variaveis q controla a autentica��o da sess�o
-		$session_items = array('is_logged_in' => '', 'email' => '',  'id_conta_acesso' => '', 'admin' => '');
+		//Destroi as variaveis q controla a autentica��o da sess�o
+		$session_items = array('is_logged_in' => '', 'email' => '',  'id_cliente' => '', 'admin' => '');
 		$this->session->unset_userdata($session_items);
 
-		//Destroi Sess�o  - alguns testes houve falha
+		//Destroi Sessao  - alguns testes houve falha
 		$this->session->sess_destroy();
 		redirect('/', 'refresh');
 		//$this->index();
@@ -108,11 +107,19 @@ class Loga_cliente extends CI_Controller{
 
 
 	function check_pass($pass){
-		$hash = $this->loga_cliente_m->get_hash($this->input->post('email')); // pega o password(hash) que foi armazenado na base.
-	
-		return $this->mylogin->check_password($hash, $pass);
+		$hash = $this->loga_cliente_m->get_hash($this->input->post('email',TRUE)); // pega o password(hash) que foi armazenado na base.
+		$check = $this->mylogin->check_password($hash, $pass);
+		if($check){
+			return $check;
+		}else{
+			$this->form_validation->set_message('check_pass', 'Usuário e/ou {field} inválidos.');
+			return FALSE;
+		}
 
 	}
+
+
+
 
 
 

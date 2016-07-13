@@ -12,14 +12,7 @@ $(function(){
         showMeridian: false
     });  // Timepicker
 
-    //var base_url='http://dev.local/fullcalendar/'; // Here i define the base_url
-    //var base_url='http://dev.local/agath/manager/'; // Here i define the base_url
-    //var base_url = '<?php echo $urlsite; ?>';
-    var currentLocation = window.location.origin;
-   //console.log(currentLocation);
-    var base_url = currentLocation + '/agath/manager/';
-
-
+   var base_url = urlbase;
     // Fullcalendar
     $('#calendar').fullCalendar({
    // var noTZ = $.fullCalendar.moment.parseZone('2016-07-01T12:00:00');
@@ -36,7 +29,6 @@ $(function(){
         editable: false,
         droppable: false,
         events: base_url+'Calendar/getEvents',
-        
         // Handle Day Click
         dayClick: function(date, event, view) {
             currentDate = date.format();
@@ -54,8 +46,7 @@ $(function(){
             });
         },
 
-   
-          editable: false, // Make the event draggable true 
+          editable: false, // Make the event draggable true
          eventDrop: function(event, delta, revertFunc) {
 
                $.post(base_url+'Calendar/dragUpdateEvent',{
@@ -124,7 +115,6 @@ $(function(){
 
 function splitString(string){
     var str = string.split(" ")[1].slice(0, -3);
-  
   // var hora = str.split(":").slice(0)+ ":" + str.split(":").slice(1);
   // var h = hora.split(":").slice(0) ;
    return str;
@@ -154,7 +144,6 @@ function splitString(string){
             var end = splitString(data.event.end._i);
 
             time = time.charAt(0) === '0' ? time.slice(1) : time;
-           
         }
        // $('#time').val(time);
         //$('#starttime').val(data.event.start._i);

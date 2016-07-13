@@ -155,7 +155,9 @@
 		$title = 'Falta algo!';
 		modalBootstapError($title, $FormError);
 	}
-    $informa = $this -> uri -> segment(3, 0);
+    //$informa = $this -> uri -> segment(3, 0);
+    $informa = $this->session->userdata('msg_login');
+
             //var_dump($informa); die();
             if (is_numeric($informa)) {
                 switch ($informa) {
@@ -204,6 +206,7 @@
                     //redirect('user/adduser/index/', 'refresh');  msgSuccess
                 }
             }
+            $this->session->sess_destroy();
 ?>
 <!-- JS Global Compulsory -->
 <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jquery/jquery.min.js' ?>"></script>
