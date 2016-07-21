@@ -15,13 +15,19 @@
 			require_once(APPPATH.'../../vendor/autoload.php'); 
 
 echo 'ricacom'.'<br>';
-
+/*
 $fb = new Facebook\Facebook([
 			  'app_id' => '944241645688491',
 			  'app_secret' => 'd30e1cf0fcf4241a9f025caccc2a70bc',
 			  'default_graph_version' => 'v2.6',
 			]);
-	
+*/
+$fb = new Facebook\Facebook([
+			  'app_id' => '944241645688491',
+			  'app_secret' => 'd30e1cf0fcf4241a9f025caccc2a70bc',
+			  'default_graph_version' => 'v2.6',
+			]);
+	//fa136bf7f8713bc9a30c052aa578a16b
 /*
 $helper = $fb->getRedirectLoginHelper();
 
