@@ -24,11 +24,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = '';
+//$config['base_url'] = 'http://dev.local:8080/exemplos-livro-ci/site-institucional';
 if($_SERVER['SERVER_NAME'] == 'dev.local'){
+	//if($_SERVER['SERVER_NAME'] == 'localhost'){
 	$config['base_url']	= 'http://dev.local:8080/proj01-thiago/t2/';	
+	//$config['base_url']	= 'http://dev.local/agath/t2/';	
+	//$config['base_url']	= 'http://localhost/safesite.dev/dev/landpage';	
 }else{
 	$config['base_url']	= 'http://ricacom.com.br/agath/t2/';
 }
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -39,13 +44,11 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 | variable so that it is blank.
 |
 */
-//$config['index_page'] = 'index.php';
 if($_SERVER['SERVER_NAME'] == 'dev.local'){
 	$config['index_page'] = 'index.php';
 }else{
 	$config['index_page'] = 'index.php?';
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -62,13 +65,11 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-//$config['uri_protocol']	= 'REQUEST_URI';
 if($_SERVER['SERVER_NAME'] == 'dev.local'){
 	$config['uri_protocol']	= 'REQUEST_URI';
 }else{
 	$config['uri_protocol']	= 'AUTO';
 }
-
 /*
 |--------------------------------------------------------------------------
 | URL suffix
@@ -92,7 +93,7 @@ $config['url_suffix'] = '';
 |
 */
 //$config['language']	= 'english';
-$config['language']	= 'portuguese-brazilian';
+$config['language']	= 'pt-br';
 
 /*
 |--------------------------------------------------------------------------
@@ -116,7 +117,8 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+//$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,6 +177,7 @@ $config['composer_autoload'] = FALSE;
 |
 */
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+//  $config['permitted_uri_chars'] = 'a-z 0-9~%.:&?_\-='; 
 
 /*
 |--------------------------------------------------------------------------
@@ -229,7 +232,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -330,7 +333,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '400000rfr0jq934cr434@#$#@$%#¨G¨&&H¨*(&()(*()PBHFGffjahafuscdghushgré5';
 
 /*
 |--------------------------------------------------------------------------
