@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1>Nossos Exames</h1>
+		<h1>Dicas de Saúde e bem estar</h1>
 	</div>
 	
 	<?php //var_dump($this->router->fetch_method()); ?>
