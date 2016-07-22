@@ -37,3 +37,12 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.imglogo {
+    width: 42px;
+    margin-top: -10px;
+}
+
+.img-servico{
+  width: 450px;
+}

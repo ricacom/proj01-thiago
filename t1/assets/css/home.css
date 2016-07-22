@@ -27,7 +27,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background: url(../img/bg-home.jpg) no-repeat center #333;
+  background: url(../img/bg-clinica.jpg) no-repeat center #333;
   background-size: cover;
 }
 body {
@@ -67,9 +67,10 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+.imglogo{     width: 54px; }
 .masthead-nav > li {
   display: inline-block;
+
 }
 .masthead-nav > li + li {
   margin-left: 20px;
@@ -82,6 +83,7 @@ body {
   color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
+  color: #FFF ;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
@@ -92,7 +94,7 @@ body {
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
-  color: #fff;
+  color: #000  ;
   border-bottom-color: #fff;
 }
 
@@ -160,6 +162,9 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 65%;
   }
 }
+
+
+.topnav{ width:100%; }

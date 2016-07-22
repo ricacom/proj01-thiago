@@ -39,7 +39,7 @@
 
                     <div class="navbar-brand">
                         <a href="#" class="navbar-logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Clinica Modelo"></a>
-                        <a class="navbar-caption text-black" href="#">CLINICA MODELO</a>
+                        <a class="navbar-caption text-black" href="#">Tipo 2</a>
                     </div>
 
                 </div>

@@ -17,6 +17,7 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		
 	</head>
 	<body>
 	<div class="site-wrapper">
@@ -24,19 +25,16 @@
 			<div class="cover-container">
 				<div class="masthead clearfix">
 					<div class="inner">
-					<h1 class="masthead-brand">LCI</h1>
-					<nav>
+					<div class="masthead-brand"><img class="imglogo" src="assets/img/logo.png"></div>
+					<nav class="topnav">
 						<?php $this->load->view('commons/menu'); ?>
 					</nav>
 					</div>
 					</div>
 					<div class="inner cover">
-					<h1 class="cover-heading">Ensinando através da prática
+					<h1 class="cover-heading">Clínica Modelo
 					</h1>
-					<p class="lead">Até aqui você aprendeu como criar um <i
-					>controller</i>, uma <i>view</i> e a usar a função <i>base_url</i>
-					do helper <i>url</i> utilizando o livro "CodeIgniter: Produtivida
-					de na criação de aplicações web em PHP".</p>
+					<p class="lead">Adotar um estilo de vida saudável ajuda a ter uma vida mais longa e melhor. Missão: Somos uma equipe comprometida em oferecer bem estar aos usuários e a sociedade através da prestação de serviços médicos com excelência e de uma forma acessível.
 					</div>
 			</div>
 		</div>
