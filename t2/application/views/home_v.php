@@ -122,10 +122,10 @@
         <div class="row">
 
             <div class="mbr-table-md-up">
-              <div class="mbr-table-cell col-md-4">
+              <div class="mbr-table-cell">
                   
               </div>
-              <div class="mbr-table-cell mbr-right-padding-md-up col-md-8 text-xs-center text-md-left">
+              <div class="mbr-table-cell mbr-right-padding-md-up col-md-12 text-xs-center text-md-left">
                   <h3 class="mbr-info-title mbr-section-title display-2">DESTACANDO-SE NO MERCADO</h3>
                   <h2 class="mbr-info-subtitle mbr-section-subtitle">Uma clinica especializada, com melhor corpo médico da região.</h2>
               </div>

@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Exercício de exemplo do capítulo 5 do livro CodeIgniter">
-		<meta name="author" content="Jonathan Lamim Antunes">
+		<meta name="description" content="Clinica Modelo - Ricacom estudios">
+		<meta name="author" content="Ricardo Costa">
 		<title>Site Institucional</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 		<link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
