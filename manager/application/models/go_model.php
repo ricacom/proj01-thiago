@@ -6,7 +6,7 @@ class Go_model extends CI_Model{
 	private $url;
 
 	function __contruct(){
-		// call the Model constructor
+		// call the Model constructor  d
 		parent::__construct();
 	}
 	//Minor methods
