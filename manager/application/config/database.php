@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
-if($_SERVER['SERVER_NAME'] == 'dev.local'){
+if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
