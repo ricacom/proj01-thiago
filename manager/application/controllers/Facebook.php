@@ -13,9 +13,9 @@
 		public function index(){
 			require_once(APPPATH.'../../vendor/autoload.php'); 
 			$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
+			  'app_id' 					=> FB_ID,
+			  'app_secret' 				=> FB_APP_SECRET,
+			  'default_graph_version' 	=> FB_DF_GRAPH_V,
 			]);
 
 			$helper = $fb->getRedirectLoginHelper();
@@ -33,9 +33,9 @@
 		public function login_callback(){
 			require_once(APPPATH.'../../vendor/autoload.php'); 
 			$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
+			  'app_id' 					=> FB_ID,
+			  'app_secret' 				=> FB_APP_SECRET,
+			  'default_graph_version' 	=> FB_DF_GRAPH_V,
 			]);
 			$helper = $fb->getRedirectLoginHelper();
 
@@ -111,9 +111,9 @@
 		function logout(){
 			require_once(APPPATH.'../../vendor/autoload.php'); 
 			$fb = new Facebook\Facebook([
-		  		'app_id' => '1057411391033802',
-				'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-				'default_graph_version' => 'v2.6',
+			  'app_id' 					=> FB_ID,
+			  'app_secret' 				=> FB_APP_SECRET,
+			  'default_graph_version' 	=> FB_DF_GRAPH_V,
 			]);
 
 		 $fb->getLogoutUrl();
@@ -125,9 +125,9 @@
 
 		require_once(APPPATH.'../../vendor/autoload.php'); 
 		$fb = new Facebook\Facebook([
-	  		'app_id' => '1057411391033802',
-			'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			'default_graph_version' => 'v2.6',
+		  'app_id' 					=> FB_ID,
+		  'app_secret' 				=> FB_APP_SECRET,
+		  'default_graph_version' 	=> FB_DF_GRAPH_V,
 		]);
 
 		if(isset($_SESSION['fb_access_token'])){ //Está logado.
