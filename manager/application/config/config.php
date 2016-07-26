@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
 	//if($_SERVER['SERVER_NAME'] == 'localhost'){
 	$config['base_url']	= 'http://ricacomlocal.com.br:8080/proj01-thiago/manager/';	
+	
 	//$config['base_url']	= 'http://dev.local/agath/manager/';	
 	//$config['base_url']	= 'http://localhost/safesite.dev/dev/landpage';	
 }else{

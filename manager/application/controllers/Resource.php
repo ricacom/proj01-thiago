@@ -16,11 +16,12 @@ class Resource extends CI_Controller {
 		$this->lang->load('user','pt-br');
 		$this->lang->load('cliente','pt-br');			// Language MENU
 		*/
-		//$this->logged->is_logged_in_user(); 			//Is USER Logged?
+		$this->logged->is_logged_in_user(); 			//Is USER Logged?
 	}
 
 
 	public function index()	{
+		/*
 		$dtRecords[] = NULL;
 		$data['title'] = "Agath | Dashboard ";
 
@@ -34,19 +35,12 @@ class Resource extends CI_Controller {
 		$this->load->view('commons/header', $data);
 		$this->load->view('dashboard_v', $dtRecords);
 		$this->load->view('commons/footer',$dtfooter);
+		*/
+	die('Not allow to access direct');
 
 	}
 
-	public function _example_output($output = null){
-		$data['title'] = "Agath | Resource ";
-		$dtfooter['footer_title'] = "Agath";
-		$dtfooter['footer_msg'] = "Aqui pode ser adicionado uma mensgam, promocional talvez... ";
-		$data['assunto'] = "Painel de Controle";
 
-		$this->load->view('commons/header', $data);
-		$this->load->view('resource',$output);
-		$this->load->view('commons/footer',$dtfooter);
-	}
 
 	public function events(){
 		try{
@@ -66,6 +60,71 @@ class Resource extends CI_Controller {
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
 		}
 	}
+
+	public function convenio_medico(){
+
+		try{
+			$crud = new grocery_CRUD();
+
+			//$crud->set_theme('datatables');
+			$crud->set_table('convenio_medico');
+			$crud->set_subject('Convenio Médico');
+			$crud->required_fields('description');
+		//	$crud->display_as('description','Nome do convênio');
+			$crud->columns('description','code','status');
+
+			$crud->callback_add_field('status',array($this,'status_callback'));
+			$crud->callback_edit_field('status',array($this,'status_callback'));
+
+			//$crud->callback_add_field('status',array($this,'add_field_callback_1'));
+
+			$output = $crud->render();
+			$title = "Gerenciar Convênios Médicos";
+			$this->_example_output($output, $title);
+
+		}catch(Exception $e){
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+
+		
+	}
+
+	function status_callback(){
+return '<select name="status" class="form-control">
+			<option value="N">Novo</option>
+		  	<option value="A">Ativo</option>
+  			<option value="B">Bloqueado</option>
+		</select>';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public function _example_output($output = null, $title = null){
+		$data['title'] = "Agath | Resource ";
+		$dtfooter['footer_title'] = "Agath";
+		$dtfooter['footer_msg'] = "Aqui pode ser adicionado uma mensgam, promocional talvez... ";
+		$data['assunto'] = $title;
+
+		$this->load->view('commons/header', $data);
+		$this->load->view('resource',$output);
+		$this->load->view('commons/footer',$dtfooter);
+	}
+
+
 
 
 } //close class
