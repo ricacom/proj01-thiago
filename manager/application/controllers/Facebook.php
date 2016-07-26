@@ -11,87 +11,62 @@
 
 
 		public function index(){
-
 			require_once(APPPATH.'../../vendor/autoload.php'); 
-
-echo 'ricacom'.'<br>';
-/*
-$fb = new Facebook\Facebook([
-			  'app_id' => '944241645688491',
-			  'app_secret' => 'd30e1cf0fcf4241a9f025caccc2a70bc',
-			  'default_graph_version' => 'v2.6',
-			]);
-*/
-$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
-			]);
-
-	# login.php
-//		$fb = new Facebook\Facebook([Helpers\FacebookRedirectLoginHelper]);
-		//Facebook\Helpers\FacebookRedirectLoginHelper 
-		$helper = $fb->getRedirectLoginHelper();
-		$permissions = ['email', 'user_likes']; // optional
-		$loginUrl = $helper->getLoginUrl(base_url('Facebook/login_callback'), $permissions);
-
-		echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
-
-		echo "<br>".base_url('Facebook/login_callback');
-
-
-
-
-	
-		}
-
-		function login_callback(){
-			require_once(APPPATH.'../../vendor/autoload.php'); 
-			
-			//var_dump($_REQUEST); die;
-			# login-callback.php
-		$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
-			]);
-/*
 			$fb = new Facebook\Facebook([
-		  'app_id' => '{app-id}', // Replace {app-id} with your app id
-		  'app_secret' => '{app-secret}',
-		  'default_graph_version' => 'v2.2',
-		  ]);
-*/
-		$helper = $fb->getRedirectLoginHelper();
+			  'app_id' => '1057411391033802',
+			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
+			  'default_graph_version' => 'v2.6',
+			]);
 
-		try {
-		  $accessToken = $helper->getAccessToken();
-		} catch(Facebook\Exceptions\FacebookResponseException $e) {
-		  // When Graph returns an error
-		  echo 'Graph returned an error: ' . $e->getMessage();
-		  exit;
-		} catch(Facebook\Exceptions\FacebookSDKException $e) {
-		  // When validation fails or other local issues
-		  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-		  exit;
-		}
+			$helper = $fb->getRedirectLoginHelper();
+			$permissions = ['email', 'user_likes']; // optional
+			$loginUrl = $helper->getLoginUrl(base_url('Facebook/login_callback'), $permissions);
 
-		if (! isset($accessToken)) {
-		  if ($helper->getError()) {
-		    header('HTTP/1.0 401 Unauthorized');
-		    echo "Error: " . $helper->getError() . "\n";
-		    echo "Error Code: " . $helper->getErrorCode() . "\n";
-		    echo "Error Reason: " . $helper->getErrorReason() . "\n";
-		    echo "Error Description: " . $helper->getErrorDescription() . "\n";
-		  } else {
-		    header('HTTP/1.0 400 Bad Request');
-		    echo 'Bad request';
-		  }
-		  exit;
+			echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+			echo "<br>".base_url('Facebook/login_callback');
+
 		}
 
 
 
+
+		public function login_callback(){
+			require_once(APPPATH.'../../vendor/autoload.php'); 
+			$fb = new Facebook\Facebook([
+			  'app_id' => '1057411391033802',
+			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
+			  'default_graph_version' => 'v2.6',
+			]);
+			$helper = $fb->getRedirectLoginHelper();
+
+			try {
+			  $accessToken = $helper->getAccessToken();
+			} catch(Facebook\Exceptions\FacebookResponseException $e) {
+			  // When Graph returns an error
+			  echo 'Graph returned an error: ' . $e->getMessage();
+			  exit;
+			} catch(Facebook\Exceptions\FacebookSDKException $e) {
+			  // When validation fails or other local issues
+			  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			  exit;
+			}
+
+			if (! isset($accessToken)) {
+			  if ($helper->getError()) {
+			    header('HTTP/1.0 401 Unauthorized');
+			    echo "Error: " . $helper->getError() . "\n";
+			    echo "Error Code: " . $helper->getErrorCode() . "\n";
+			    echo "Error Reason: " . $helper->getErrorReason() . "\n";
+			    echo "Error Description: " . $helper->getErrorDescription() . "\n";
+			  } else {
+			    header('HTTP/1.0 400 Bad Request');
+			    echo 'Bad request';
+			  }
+			  exit;
+			}
+
+
+/*
 
 		// Logged in
 		echo '<h3>Access Token</h3>';
@@ -125,86 +100,58 @@ $fb = new Facebook\Facebook([
 		}
 
 		$_SESSION['fb_access_token'] = (string) $accessToken;
-/*
-$user = $fb->getGraphUser();
-echo "<br>";
-echo "<hr>";
-echo 'Name: ' . $user['name'];
-echo "<br>";
-echo 'Email: ' . $user['email'];*/
+		*/
+	redirect('Facebook/status');
+		}
 
-		// User is logged in with a long-lived access token.
-		// You can redirect them to a members-only page.
-		//header('Location: https://example.com/members.php');
 
-}
 
-function logout(){
+
+
+		function logout(){
 			require_once(APPPATH.'../../vendor/autoload.php'); 
-
-
-	$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
+			$fb = new Facebook\Facebook([
+		  		'app_id' => '1057411391033802',
+				'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
+				'default_graph_version' => 'v2.6',
 			]);
 
-$helper = $fb->getRedirectLoginHelper();
-$accessToken = $helper->getAccessToken();
-$oAuth2Client = $fb->getOAuth2Client();
-$token = $oAuth2Client->getLongLivedAccessToken($accessToken);
-$url = 'https://www.facebook.com/logout.php?next=' . base_url() .
-  '&access_token='.$token;
-session_destroy();
-header('Location: '.$url); 
-    
-    echo "logout";
+		 $fb->getLogoutUrl();
 
-}
+		}
 
 
-function status(){
+	function status(){
 
-			require_once(APPPATH.'../../vendor/autoload.php'); 
+		require_once(APPPATH.'../../vendor/autoload.php'); 
+		$fb = new Facebook\Facebook([
+	  		'app_id' => '1057411391033802',
+			'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
+			'default_graph_version' => 'v2.6',
+		]);
 
+		if(isset($_SESSION['fb_access_token'])){ //Está logado.
+			try {
+			  // Returns a `Facebook\FacebookResponse` object
+			  $response = $fb->get('/me?fields=id,name,email', $_SESSION['fb_access_token']);
+			} catch(Facebook\Exceptions\FacebookResponseException $e) {
+			  echo 'Graph returned an error: ' . $e->getMessage();
+			  exit;
+			} catch(Facebook\Exceptions\FacebookSDKException $e) {
+			  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			  exit;
+			}
+		$user = $response->getGraphUser();
 
-	$fb = new Facebook\Facebook([
-			  'app_id' => '1057411391033802',
-			  'app_secret' => 'fe115df6d565f073fdb1466baba7b1b9',
-			  'default_graph_version' => 'v2.6',
-			]);
+		echo "<hr>";
+		echo "id: " . $user['id'] ."<br>";
+		echo "Nome: " . $user['name'] ."<br>";
+		echo "Email: " . $user['email'] ."<br>";
+		}else{ //Não está logado.. será redirecionado.
+			redirect('Facebook/index');
+		}
 
-	var_dump($_SESSION['fb_access_token']);
-
-echo "<br>";
-/*
-$fbApp = new Facebook\FacebookApp('1057411391033802', 'fe115df6d565f073fdb1466baba7b1b9');
-$request = new Facebook\FacebookRequest($fbApp, $_SESSION['fb_access_token'], 'GET', '/me');
-*/
-$request = new Facebook\FacebookRequest($fb, $_SESSION['fb_access_token'], 'GET', '/me');
-$request = $fb->request('GET', '/me');
-
-
-// Send the request to Graph
-try {
-  $response = $fb->getClient()->sendRequest($request);
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-  // When Graph returns an error
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
-  // When validation fails or other local issues
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
-}
-
-$graphNode = $response->getGraphNode();
-
-echo 'User name: ' . $graphNode['name'];
-
-
-
-}
+	}
 
 
 
