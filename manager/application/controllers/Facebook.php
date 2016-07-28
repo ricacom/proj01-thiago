@@ -66,7 +66,7 @@
 			}
 
 
-/*
+
 
 		// Logged in
 		echo '<h3>Access Token</h3>';
@@ -100,8 +100,10 @@
 		}
 
 		$_SESSION['fb_access_token'] = (string) $accessToken;
-		*/
-	redirect('Facebook/status');
+	if(isset($_SESSION['fb_access_token'])){
+		redirect('Facebook/status');	
+	}		
+	//
 		}
 
 
@@ -117,6 +119,7 @@
 			]);
 
 		 $fb->getLogoutUrl();
+
 
 		}
 

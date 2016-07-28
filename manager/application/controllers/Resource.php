@@ -70,7 +70,7 @@ class Resource extends CI_Controller {
 			$crud->set_table('convenio_medico');
 			$crud->set_subject('Convenio Médico');
 			$crud->required_fields('description');
-		//	$crud->display_as('description','Nome do convênio');
+			$crud->display_as('description','Nome do convênio');
 			$crud->columns('description','code','status');
 
 			$crud->callback_add_field('status',array($this,'status_callback'));
@@ -90,11 +90,11 @@ class Resource extends CI_Controller {
 	}
 
 	function status_callback(){
-return '<select name="status" class="form-control">
-			<option value="N">Novo</option>
-		  	<option value="A">Ativo</option>
-  			<option value="B">Bloqueado</option>
-		</select>';
+		return '<select name="status" class="form-control">
+					<option value="N">Novo</option>
+				  	<option value="A">Ativo</option>
+		  			<option value="B">Bloqueado</option>
+				</select>';
 }
 
 

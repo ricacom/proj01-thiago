@@ -99,7 +99,7 @@ define('LOG_MSG_LOGOUT',			'Logout realizado');
 
 
 
-//LOGIN 
+//LOGIN
 define('UNIQUE_SALT', '7rRicardoRicacom&n()!caL*dC#OMF4Jesus');
 
 // FACEBOOK TEST NO DOMINIO ricacomlocal.com.br
