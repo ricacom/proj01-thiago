@@ -16,7 +16,7 @@ class Cadastra_cliente_m extends CI_Model{
 
 
 	function gravaCliente($dataSQL){
-
+		$dataSQL['datacad'] = set_agora();
 		// ARRAY para Inset no banco
 		$gravaDados = $this->db->insert('users', $dataSQL);
 		$id = $this->db->insert_id();
