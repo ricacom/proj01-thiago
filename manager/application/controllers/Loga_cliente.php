@@ -6,7 +6,7 @@ class Loga_cliente extends CI_Controller{
 		parent::__construct();
 		$this->load->helper(array('form', 'url', 'path', 'html', 'msg'));
 		$this->load->library(array('session', 'form_validation', 'mylog', 'mylogin'));
-		$this->load->model('loga_cliente_m'); 		// Load Model
+		$this->load->model(array('loga_cliente_m', 'cadastra_cliente_m')); 		// Load Model
 		$this->lang->load('login','pt-br');			// Language
 	}
 
@@ -144,6 +144,8 @@ class Loga_cliente extends CI_Controller{
 		$_SESSION['fb_access_token'] = (string) $accessToken;
 			if(isset($_SESSION['fb_access_token'])){
 				redirect('Loga_cliente/status_fb');	
+			}else{
+				echo "Login Facebook fail!";
 			}
 		}
 
@@ -164,7 +166,7 @@ class Loga_cliente extends CI_Controller{
 			try {
 			  // Returns a `Facebook\FacebookResponse` object
 			  //$response = $fb->get('/me?fields=id,name,email', $_SESSION['fb_access_token']);
-			  $response = $fb->get('/me?fields=id,name,email,age_range,gender,is_verified,locale', $_SESSION['fb_access_token']);
+			  $response = $fb->get('/me?fields=id,name,email,age_range,gender,is_verified,locale,birthday', $_SESSION['fb_access_token']);
 			  //$response = $fb->get('/me', $_SESSION['fb_access_token']);
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
 			  echo 'Graph returned an error: ' . $e->getMessage();
@@ -174,105 +176,62 @@ class Loga_cliente extends CI_Controller{
 			  exit;
 			}
 			//var_dump($response);
-		$user = $response->getGraphUser();
-		
-/*
-		echo "<hr>";
-		echo "id: " . $user['id'] ."<br>";
-		echo "Nome: " . $user['name'] ."<br>";
-		echo "Email: " . $user['email'] ."<br>";
-		    array (size=7)
-      'id' => string '119349798504553' (length=15)
-      'name' => string 'Ricacom User Teste' (length=18)
-      'email' => string 'ricacom_kmuresj_teste@tfbnw.net' (length=31)
-      'birthday' => 
-        object(Facebook\GraphNodes\Birthday)[35]
-          private 'hasDate' => boolean true
-          private 'hasYear' => boolean true
-          public 'date' => string '1980-08-08 00:00:00' (length=19)
-          public 'timezone_type' => int 3
-          public 'timezone' => string 'UTC' (length=3)
-      'gender' => string 'female' (length=6)
-      'is_verified' => boolean false
-      'locale' => string 'pt_BR' (length=5)
-*/
+			$user = $response->getGraphUser()->asArray();
 
-		// Procura esse id na Base, se existir loga o cara
-		/*
-		$aDadosUser = array(
-				'id_cliente' 			=> $query->id,
-				'fullname' 				=> $query->fullname,
-				'email' 				=> $query->email,
+			//Dados vindo do facebook API
+			$aDadosUser = array(
+				'id_cliente' 			=> $user['id'],
+				'fullname' 				=> $user['name'],
+				'email' 				=> $user['email'],
+				'age_range' 			=> $user['age_range']['min'],
+				'gender' 				=> $user['gender'],
+				'is_verified' 			=> $user['is_verified'],
+				'locale' 				=> $user['locale'],
 				'is_logged_cli'			=> TRUE,
-		);
-		*/
-	var_dump($user['age_range']);
-		if(isset($user['id'])){
-		$aDadosUser = array(
-			'id_cliente' 			=> $user['id'],
-			'fullname' 				=> $user['name'],
-			'email' 				=> $user['email'],
-			'age_range' 				=> $user['age_range'],
-			'gender' 				=> $user['gender'],
-			'is_verified' 			=> $user['is_verified'],
-			'locale' 				=> $user['locale'],
-			'is_logged_cli'			=> TRUE,
 
-		);
-		var_dump($aDadosUser); die;
-		// LOG o evento de autenticar | Envia os dados para o logar no DB
-		$aDataLog = array(
-			'cod' 				=> LOG_ID_LOGIN_SUCCESS,
-			'msg' 				=> LOG_MSG_LOGIN_SUCCESS,
-			'idUser'			=> $aDadosUser['id_cliente'],
-		);
+			);
+			//var_dump($aDadosUser); die;
 
-		//GravalOG
-		$gravaLog 		= $this->mylog->writeLog($aDataLog);
-		$gravaSession 	= $this->mylog->writeSession($aDadosUser);
+			$userExist = $this->loga_cliente_m->id_user_exist($user['id']);
+		//	var_dump($userExist);
 
-		if($gravaLog AND $gravaSession){
-			//sucesso no login
-			redirect('dashboard', 'refresh');
+			if($userExist){ //Esse user vindo do Facebook está cadastrado, Devo Logar o usuário
+				$aDataLog = array( // LOG o evento de autenticar | Envia os dados para o logar no DB
+					'cod' 				=> LOG_ID_LOGIN_SUCCESS,
+					'msg' 				=> LOG_MSG_LOGIN_SUCCESS,
+					'idUser'			=> $aDadosUser['id_cliente'],
+				);
+				//GravalOG
+				$gravaLog 		= $this->mylog->writeLog($aDataLog);
+				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
 
-		}else{
-			//var_dump($this->session->all_userdata());
-			echo "Nao Gravei, o log e nao registrei a session"; die;
-		}
-	}
+				if($gravaLog AND $gravaSession){	//sucesso no login
+					redirect('dashboard', 'refresh');
 
-	else{ // incorrect username or password
-		//Loga que errou dados SEGURANCA
-		$aDataLog = array(
-			'cod' 				=> LOG_ID_LOGIN_FAIL,
-			'msg' 				=> LOG_MSG_LOGIN_FAIL,
-		);
+				}else{		//var_dump($this->session->all_userdata());
+					echo "Nao Gravei, o log e nao registrei a session"; die;
+				}
 
-		//GravalOG
-		$gravaLog = $this->mylog->writeLoginFail($aDataLog);
-		//echo " Usuário e/ou senha incorreta!";
-		$this->session->set_userdata('msg_login', '1');
-		redirect('loga_cliente', 'refresh');
-	}
+			}else{			//Devo gravar o user na Dase.
+				$gravaUserFb = $this->cadastra_cliente_m->grava_user_fb($aDadosUser);
 
+				$aDataLog = array( // LOG o evento de autenticar | Envia os dados para o logar no DB
+					'cod' 				=> LOG_ID_LOGIN_SUCCESS,
+					'msg' 				=> LOG_MSG_LOGIN_SUCCESS,
+					'idUser'			=> $aDadosUser['id_cliente'],
+				);
+				$gravaLog 		= $this->mylog->writeLog($aDataLog);
+				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
 
+				if($gravaUserFb AND $gravaLog AND $gravaSession){	//sucesso no login
+					redirect('dashboard', 'refresh');
 
-
-
-
-
-
-
-
-		}else{ //Não está logado.. será redirecionado.
-			//redirect('Loga_cliente');
-			 var_dump($this->session->userdata());
-		}
-
-	}
-
-
-
+				}else{		//var_dump($this->session->all_userdata());
+					echo "Nao Gravei, o log e nao registrei a session"; die;
+				}
+			}
+	}//close se está logado
+}// close status_fb
 
 	function check_credentials(){
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');

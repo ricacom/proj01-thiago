@@ -183,6 +183,36 @@ $difference = time() - $timestamp; // this will give you the number of seconds d
 	}
 
 
-	
+
+function id_user_exist($id){
+	$id = (int)$id;
+	$this->db->where('id', $id);
+	$query = $this->db->get('users');
+	$row = $query->row(1);
+	if($row){
+		return $row->id;	
+	}else{
+		return FALSE;
+	}
+
+}
+
+function user_exist($email){
+	//$id = (int)$id;
+		$this->db->where($email);
+		$query = $this->db->get('users');
+		$row = $query->row(1);
+	//		var_dump($row->id); die();
+		if($row){
+			return $row->id;	
+		}else{
+			return FALSE;
+		}
+
+}
+
+
+
+
 
 } //Close class
