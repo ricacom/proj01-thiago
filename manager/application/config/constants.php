@@ -100,13 +100,19 @@ define('LOG_MSG_LOGOUT',			'Logout realizado');
 
 
 //LOGIN
-define('UNIQUE_SALT', '7rRicardoRicacom&n()!caL*dC#OMF4Jesus');
+define('UNIQUE_SALT', '12Jesus7rRicardoRicacom&n()!caL*dC#OMF4¨%');
 
+
+if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
 // FACEBOOK TEST NO DOMINIO ricacomlocal.com.br
-define('FB_ID',					'1057411391033802');
-define('FB_APP_SECRET',			'fe115df6d565f073fdb1466baba7b1b9');
-define('FB_DF_GRAPH_V',			'v2.6');
-
+	define('FB_ID',					'1057411391033802');
+	define('FB_APP_SECRET',			'fe115df6d565f073fdb1466baba7b1b9');
+	define('FB_DF_GRAPH_V',			'v2.6');
+}else{
+	define('FB_ID',					'1057407194367555');
+	define('FB_APP_SECRET',			'2daac1605aab8fafc27e6fa848b5bdd3');
+	define('FB_DF_GRAPH_V',			'v2.6');
+}
 /*
 	$fb = new Facebook\Facebook([
 	  'app_id' => '1057411391033802',
