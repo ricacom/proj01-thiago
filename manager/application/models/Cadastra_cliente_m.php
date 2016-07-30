@@ -16,8 +16,9 @@ class Cadastra_cliente_m extends CI_Model{
 
 
 	function gravaCliente($dataSQL){
-		$dataSQL['datacad'] = set_agora();
-		// ARRAY para Inset no banco
+		$dataSQL['datacad'] = $this->set_agora();
+		// -dumpARRAY para Inset no banco
+		// var_dump($dataSQL);die;
 		$gravaDados = $this->db->insert('users', $dataSQL);
 		$id = $this->db->insert_id();
 		if   ($gravaDados){
@@ -35,10 +36,10 @@ class Cadastra_cliente_m extends CI_Model{
 	//	'pagamento_vencido' 	=> 0,
 	//	'id_plano_contratado'	=> 0,
 	//	'pagou_plano'	=> 0,
-		
+
 	);
 
-		$gravaDados = $this->db->insert('cliente_controle', $dataSQL);
+		$gravaDados = $this->db->insert('user_control', $dataSQL);
 	}
 
 
@@ -58,9 +59,6 @@ class Cadastra_cliente_m extends CI_Model{
 		return $cliente;
 	}
 
-
-
-
 function grava_user_fb($aDados){
 	//var_dump($aDados); die;
 	$sexo = ($aDados['gender'] == 'female') ? 'F' : 'M';
@@ -70,6 +68,7 @@ function grava_user_fb($aDados){
 		'email' 				=> $aDados['email'],
 		'fb_age_range' 			=> $aDados['age_range'],
 		'sexo' 					=> $sexo,
+		'datacad' 				=> $this->set_agora(),
 		'fb_is_verified' 		=> $aDados['is_verified'],
 		'fb_locale' 			=> $aDados['locale'],
 		'tipo_cadastro'			=> 'facebook',

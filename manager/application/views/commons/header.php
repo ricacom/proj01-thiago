@@ -81,7 +81,7 @@
             	  <div class="col-md-4">
             	  </div>
             	  <div class="col-md-4">
-            	  	<div class="text-right">		  </div>
+
             	  </div>
             	</div>
             </div>
@@ -89,14 +89,23 @@
         <li class="header">
             <div class="main">
                 <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
                         <div class="text-center">	<?= $assunto; ?></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-right">   
+                        <a class="btn btn-danger btn-xs" href="<?php echo base_url('Loga_cliente/Logout'); ?>" role="button">Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </li>
         <li class="content ">
+
+
+
 
 
 

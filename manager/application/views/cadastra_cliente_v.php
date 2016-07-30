@@ -97,14 +97,14 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<span class="color-red">* </span><label  for="password">Senha</label>
-									<input type="dpassword" class="form-control" name="password" id="password">
+									<input type="password" class="form-control" name="password" id="password">
 									<div class='text-right'>* Mínimo 6 caracteres</div>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
 									<span class="color-red">* </span><label  for="cpassword">Repita a senha</label>
-									<input type="cpassword" class="form-control" name="cpassword" id="cpassword">
+									<input type="password" class="form-control" name="cpassword" id="cpassword">
 								</div>
 							</div>
 

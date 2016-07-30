@@ -20,13 +20,14 @@ class Logged {
 			die();
 		}
 	}
-		function is_logged_in_user()	{
+
+
+	function is_logged_in_user()	{
 		//Carrega a Classe SESSION
 		$this->ci->load->library('session');
 
 		$is_logged_in = $this->ci->session->userdata('id_cliente');
-		if(!isset($is_logged_in) || $is_logged_in != true)
-		{	
+		if(!isset($is_logged_in) || $is_logged_in != true){
 			$this->ci->session->set_userdata('msg_login', '2');
 			redirect('loga_cliente', 'refresh');
 			die();
@@ -47,6 +48,17 @@ class Logged {
 	}
 
 
+function is_logged_in_pagelogin(){
+		//Carrega a Classe SESSION
+		$this->ci->load->library('session');
+
+		$is_logged_in = $this->ci->session->userdata('id_cliente');
+		if(!isset($is_logged_in) || $is_logged_in != true){
+			$this->ci->session->set_userdata('msg_login', '2');
+			redirect('loga_cliente/index2', 'refresh');
+			
+		}
+	}
 
 
 

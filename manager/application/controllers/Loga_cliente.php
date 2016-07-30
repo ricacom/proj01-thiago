@@ -5,13 +5,25 @@ class Loga_cliente extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->helper(array('form', 'url', 'path', 'html', 'msg'));
-		$this->load->library(array('session', 'form_validation', 'mylog', 'mylogin'));
+		$this->load->library(array('session', 'form_validation', 'mylog', 'mylogin', 'logged'));
 		$this->load->model(array('loga_cliente_m', 'cadastra_cliente_m')); 		// Load Model
 		$this->lang->load('login','pt-br');			// Language
+
+		//Is USER Logged?
 	}
 
-
 	function index(){
+		$user = $this->session->userdata('id_cliente');
+		//var_dump($user);
+		if($user){
+			redirect('dashboard', 'refresh');
+		}else{ //Nao está logado, precisa ver a tela de login.
+			$this->logged->is_logged_in_pagelogin();
+		}
+
+	}
+
+	function index2(){
 		require_once(APPPATH.'../../vendor/autoload.php');
 		$fb = new Facebook\Facebook([
 		  'app_id' 					=> FB_ID,
@@ -67,22 +79,21 @@ class Loga_cliente extends CI_Controller{
 	                    </div>
 	                    <br><br>
 	                </div>
-	                <div class="row margin-bottom-10">
-	                    <div class="col-md-10 col-md-offset-1">
+	                <!--div class="row margin-bottom-10">
+	                    < div class="col-md-10 col-md-offset-1">
 	                    <div class="text-center"> Cadastrar usando a sua conta </div>
-	                    <a href='<?php echo base_url()."cadastra_cliente/"; ?>' class="btn-u btn-u-red btn100 text-center" role="button">
+	                    <a href='<?php //echo base_url()."cadastra_cliente/"; ?>' class="btn-u btn-u-red btn100 text-center" role="button">
 	                        <i class="fa fa-google-plus"> </i> Google
 	                    </a>
 	                    </div>
-	                </div>
+	                </div -->
 
 	                <div class="row margin-bottom-10">
 	                    <div class="col-md-10 col-md-offset-1">
-	                    <div class="text-center"> Cadastrar usando a sua conta </div>
-	                    <a href='<?php echo $loginUrl; ?>' class="btn-u btn-u-dark-blue btn100 text-center" role="button">
-	                    <i class="fa fa-facebook"> </i> acebook
-	                    </a>
-	                    <?php // echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>'; ?>
+	                    	<div class="text-center"> Cadastrar usando a sua conta </div>
+	                    	<a href='<?php echo $loginUrl; ?>' class="btn-u btn-u-dark-blue btn100 text-center" role="button">
+	                    		<i class="fa fa-facebook"> </i> acebook
+	                    	</a>
 	                    </div>
 	                </div>
 	            </div>
