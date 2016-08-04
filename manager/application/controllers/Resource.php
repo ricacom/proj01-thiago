@@ -139,7 +139,7 @@ class Resource extends CI_Controller {
 			$crud->callback_edit_field('dataalter',array($this,'gruposAdmin_callback_dataalter'));
 
 			$output = $crud->render();
-			$title = "Gerenciar Grupos de adminisntração";
+			$title = "Gerenciar Grupos de Administração";
 			$this->_example_output($output, $title);
 
 		}catch(Exception $e){
