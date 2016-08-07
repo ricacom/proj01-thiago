@@ -31,8 +31,11 @@ class Profess extends CI_Controller {
 
 		//$this->_example_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
 
+		$gravaDados = 1;
+		var_dump($this->teste($gravaDados));
 
 		$this->load->view('commons/header', $data);
+		$this->load->view('commons/dash_lateral_profess');
 		$this->load->view('profess_v', $dtRecords);
 		$this->load->view('commons/footer',$dtfooter);
 
@@ -41,7 +44,15 @@ class Profess extends CI_Controller {
 	}
 
 
+	function validaSaidaDB($gravaDados){
+		var_dump($gravaDados); 
+		if($gravaDados){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 
+	}
 
 
 

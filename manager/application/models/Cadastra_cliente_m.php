@@ -16,50 +16,35 @@ class Cadastra_cliente_m extends CI_Model{
 
 
 	function gravaCliente($dataSQL){
+		$this->db->trans_start();
+
 		$dataSQL['datacad'] = $this->set_agora();
-		// -dumpARRAY para Inset no banco
 		// var_dump($dataSQL);die;
-		$gravaDados = $this->db->insert('users', $dataSQL);
-		$id = $this->db->insert_id();
-		if   ($gravaDados){
-			$this->set_controle_cliente($id);
+		$gr_user = $this->db->insert('users', $dataSQL);
+		$id 		= $this->db->insert_id();
+		$cr_cli 	= $this->set_controle_cliente($id);
+		$df_grp 	= $this->set_default_group($id);
+
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE){
+		        $this->db->trans_rollback();
+		        return FALSE;
+		}else{
+		        $this->db->trans_commit();
+		        return  $id;
+		}
+		/*
+		if ($gr_user AND $cr_cli AND $df_grp){
 			return  $id;
 		}else{
 			return FALSE; // nao gravou
 		}
+		*/
 	}
 
-	function set_controle_cliente($id_cliente){
-		$dataSQL = array( // ARRAY para Inset no banco
-		'id_cliente' 			=> $id_cliente,
-		'cad_completo' 			=> 0,
-	//	'pagamento_vencido' 	=> 0,
-	//	'id_plano_contratado'	=> 0,
-	//	'pagou_plano'	=> 0,
-
-	);
-
-		$gravaDados = $this->db->insert('user_control', $dataSQL);
-	}
-
-
-	function get_dataClient($id){
-		//var_dump($id);
-		$this->db->where('id', $id);
-		$query = $this->db->get('users');
-
-		foreach ($query->result() as $row) {
-			$cliente[] = array(
-            'fullname' 		=> $row->fullname,
-			'email' 		=> $row->email,
-			'sexo' 			=> $row->sexo,
-			);
-		}
-
-		return $cliente;
-	}
-
-function grava_user_fb($aDados){
+	function grava_user_fb($aDados){
+		$this->db->trans_start();
 	//var_dump($aDados); die;
 	$sexo = ($aDados['gender'] == 'female') ? 'F' : 'M';
   	$aDadosUser = array(
@@ -78,6 +63,20 @@ function grava_user_fb($aDados){
 
   	// ARRAY para Inset no banco  | utf8_general_ci
 		$gravaDados = $this->db->insert('users', $aDadosUser);
+		$id 		= $this->db->insert_id();
+		$cr_cli 	= $this->set_controle_cliente($id);
+		$df_grp 	= $this->set_default_group($id);
+
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE){
+		        $this->db->trans_rollback();
+		        return FALSE;
+		}else{
+		        $this->db->trans_commit();
+		        return  $id;
+		}
+		/*
 		$id = $this->db->insert_id();
 		if ($gravaDados){
 			$this->set_controle_cliente($id);
@@ -85,10 +84,49 @@ function grava_user_fb($aDados){
 		}else{
 			return FALSE; // nao gravou
 		}
+		*/
 
 
 }
 
+
+	function set_controle_cliente($id_cliente){
+		$dataSQL = array( // ARRAY para Inset no banco
+		'users_id' 				=> $id_cliente,
+		'cad_completo' 			=> 0,
+	);
+
+		$gravaDados = $this->db->insert('user_control', $dataSQL);
+		if($gravaDados){ return TRUE;}else{return  FALSE;}
+	}
+
+function set_default_group($id_cliente){
+		$dataSQL = array( // ARRAY para Inset no banco
+		'users_id' 				=> $id_cliente,
+		'group_id' 				=> 4, //PACIENTE
+		'datacad' 				=> $this->set_agora(),
+	);
+
+		$gravaDados = $this->db->insert('user2group', $dataSQL);
+		if($gravaDados){ return TRUE;}else{return  FALSE;}
+		//$sexo = ($aDados['gender'] == 'female') ? 'F' : 'M';
+	}
+
+	function get_dataClient($id){
+		//var_dump($id);
+		$this->db->where('id', $id);
+		$query = $this->db->get('users');
+
+		foreach ($query->result() as $row) {
+			$cliente[] = array(
+            'fullname' 		=> $row->fullname,
+			'email' 		=> $row->email,
+			'sexo' 			=> $row->sexo,
+			);
+		}
+
+		return $cliente;
+	}
 
 
 

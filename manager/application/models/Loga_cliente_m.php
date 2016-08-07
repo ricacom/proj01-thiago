@@ -44,6 +44,7 @@ class Loga_cliente_m extends CI_Model{
 		//Checa status, se loga, e se status for == S
 		$status = array(
 			'email' 			=> trim($email), 
+			'tipo_cadastro'		=> 'form_site',
 		);
 		$this->db->where($status);
 		$query = $this->db->get('users');

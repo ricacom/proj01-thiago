@@ -19,7 +19,7 @@
 <!-- End Contact Section -->
 
 
-<?php  if(($this->router->fetch_class()) != 'resource'){  ?>
+<?php  if(($this->router->fetch_class()) != 'Resource'){  ?>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <?php   } ?>
 
@@ -53,6 +53,26 @@ if(($this->router->fetch_class()) == 'dashboard'){
   }
 ?>
 
+
+<?php if(($this->router->fetch_class()) == 'cadastra_cliente'){  ?>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.mask.js' ?>"></script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+              $('.phone_with_ddd').mask('(00) 0000-0000');
+            });
+
+        var maskBehavior = function (val) {
+         return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        options = {onKeyPress: function(val, e, field, options) {
+         field.mask(maskBehavior.apply({}, arguments), options);
+         }
+        };
+         
+        $('.phone').mask(maskBehavior, options);
+    </script>
+
+<?php    } ?>
 
 
 
