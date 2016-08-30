@@ -18,6 +18,67 @@
 
 <!-- End Contact Section -->
 
+
+<?php  if(($this->router->fetch_class()) != 'Resource'){  ?>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<?php   } ?>
+
+
+<?php 
+//var_dump($this->router->fetch_class());
+if(($this->router->fetch_class()) == 'dashboard'){
+ ?>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js'></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
+        <script src='<?php echo base_url();?>assets/js/bootstrap-colorpicker.min.js'></script>
+        <script src='<?php echo base_url();?>assets/js/fullcalendar-main.js'></script>
+        <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jcalendar/lang/pt-br.js' ?>"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.4/jquery.timepicker.min.js"></script> <!-- TimePicker -->
+        <script type="text/javascript">
+            $('.timepicker').timepicker({
+                timeFormat: 'H:mm',
+                interval: 60,
+                minTime: '10',
+                maxTime: '6:00pm',
+                defaultTime: '11',
+                startTime: '10:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        </script>
+<?php 
+  }
+?>
+
+
+<?php if(($this->router->fetch_class()) == 'cadastra_cliente'){  ?>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.mask.js' ?>"></script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+              $('.phone_with_ddd').mask('(00) 0000-0000');
+            });
+
+        var maskBehavior = function (val) {
+         return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        options = {onKeyPress: function(val, e, field, options) {
+         field.mask(maskBehavior.apply({}, arguments), options);
+         }
+        };
+         
+        $('.phone').mask(maskBehavior, options);
+    </script>
+
+<?php    } ?>
+
+
+
+
+
+
 <!-- JS Global Compulsory -->
 
 <script type="text/javascript" src="<?php echo base_url().'assets/plugins/jquery/jquery-migrate.min.js' ?>"></script>
@@ -34,23 +95,6 @@
   });
 </script>
 
-    <!-- script type="text/javascript" src="<?php echo base_url() . 'assets/js/plugins/jquery.mask.min.js' ?>"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-      $('.date').mask('11/11/1111');
-      //$('.time').mask('00:00:00');
-      //$('.date_time').mask('99/99/9999 00:00:00');
-      $('.cep').mask('99999-999');
-      $('.cpf').mask('999.999.999-99');
-      $('.cnpj').mask('99.999.999/9999-99');
-      $('.phone').mask('(99) 9999-9999');
-      $('.phone_ddd').mask('(99) 9999-9999');
-      $('.phone_m').mask('(99) 9 9999-9999');
-     // $('.phone_us').mask('(999) 999-9999');
-     // $('.mixed').mask('AAA 000-S0S');
-  });
-
-</script -->
 <script type="text/javascript">
   $(".bt_pessoa").click(function(){
       $(".msg_pessoa").hide('slow');
@@ -68,82 +112,11 @@ $(function () {
 })
 </script>
 
-
-<script type="text/javascript">
-jQuery(function($){
-        $.datepicker.regional['pt-BR'] = {
-                closeText: 'Fechar',
-                prevText: '&#x3c;Anterior',
-                nextText: 'Pr&oacute;ximo&#x3e;',
-                currentText: 'Hoje',
-                monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
-                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
-                'Jul','Ago','Set','Out','Nov','Dez'],
-                dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
-                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
-                dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
-                weekHeader: 'Sm',
-                dateFormat: 'dd/mm/yy',
-                firstDay: 0,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: ''};
-        $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
-});
-
-
-$(function() {
-  $( ".data_br" ).datepicker();
-});
-
-</script>
 <?php $url = base_url() .'cadastro_completo/vercidades/'; ?>
 <script type="text/javascript">
 var url = '<?php echo $url; ?>';
 //var estadoVal = 0;
 
-$(function(){
-  $('.cod_estados').change(function(){
-    var estadoVal = $(".cod_estados" ).val();
-    if( $(this).val() ) {
-      $('.cod_cidades').hide();
-      $('.carregando').show();
-      $.getJSON(url+estadoVal, function(j){
-        //console.log(estadoVal);
-        var options = '<option value=""> Selecione a cidade </option>'; 
-        for (var i = 0; i < j.length; i++) {
-          options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
-        } 
-        $('.cod_cidades').html(options).show();
-        $('.carregando').hide();
-      });
-    } else {
-      $('.cod_cidades').html('<option value="">-- Escolha um estado --</option>');
-    }
-  });
-});
-
-$(function(){
-  $('.cod_estados_pj').change(function(){
-    var estadoVal = $(".cod_estados_pj" ).val();
-    if( $(this).val() ) {
-      $('.cod_cidades_pj').hide();
-      $('.carregando').show();
-      $.getJSON(url+estadoVal, function(j){
-       // console.log(estadoVal);
-        var options = '<option value=""> Selecione a cidade </option>'; 
-        for (var i = 0; i < j.length; i++) {
-          options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
-        } 
-        $('.cod_cidades_pj').html(options).show();
-        $('.carregando').hide();
-      });
-    } else {
-      $('.cod_cidades_pj').html('<option value="">-- Escolha um estado --</option>');
-    }
-  });
-});
 </script>
 
 
@@ -184,21 +157,6 @@ $(function(){
 
 
 
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.4/jquery.timepicker.min.js"></script> <!-- TimePicker -->
-        <script type="text/javascript">
-            $('.timepicker').timepicker({
-                timeFormat: 'H:mm',
-                interval: 60,
-                minTime: '10',
-                maxTime: '6:00pm',
-                defaultTime: '11',
-                startTime: '10:00',
-                dynamic: false,
-                dropdown: true,
-                scrollbar: true
-            });
-        </script>
 
 
 

@@ -64,7 +64,7 @@
     );
     //echo img($aPropImg);
     
-    echo form_open('loga_cliente/check_credentials', $aPropForm);
+    echo form_open('Loga_cliente/check_credentials', $aPropForm);
 ?>
 
 <div class="container">

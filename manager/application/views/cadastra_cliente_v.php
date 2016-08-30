@@ -18,11 +18,10 @@
 					$fullname 		=  array('name' => 'fullname', 	'placeholder' => 'Nome completo', 'class' => 'form-control', 'value' => set_value('fullname') );
 					//$sexof			=  array('name' => 'sexo', 		'class' => 'sexo', 'value' => 'F');
 					//$sexom			=  array('name' => 'sexo', 		'class' => 'sexo', 'value' => 'M');
-					$phone			=  array('name' => 'phone', 	'id'=>'phone', 'placeholder' => 'Telefone residencial', 	'class' => 'form-control', 'value' => set_value('phone') );
-					$mphone 		=  array('name' => 'mphone', 	'id'=>'mphone','placeholder' => 'Telefone móvel',			'class' => 'form-control', 'value' => set_value('mphone') );
+					$phone			=  array('name' => 'phone', 	'id'=>'phone', 'placeholder' => 'Telefone residencial', 	'class' => 'form-control phone', 'value' => set_value('phone') );
+					$mphone 		=  array('name' => 'mphone', 	'id'=>'mphone','placeholder' => 'Telefone móvel',			'class' => 'form-control phone_with_ddd', 'value' => set_value('mphone') );
 					$idade 		=  array('name' => 'idade', 	'id'=>'datapicker','placeholder' => 'Idade', 		'class' => 'form-control', 'value' => set_value('idade') );
 					$email 			=  array('name' => 'email', 	'id'=>'email','placeholder' => 'E-mail', 'type' => 'email',	'class' => 'form-control', 'value' => set_value('email') );
-
 
 					// (Nome , email , telefone , senha , Data de nascimento ou idade  )
 

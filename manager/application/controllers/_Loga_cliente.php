@@ -9,6 +9,7 @@ class Loga_cliente extends CI_Controller{
 		$this->load->model(array('loga_cliente_m', 'cadastra_cliente_m')); 		// Load Model
 		$this->lang->load('login','pt-br');			// Language
 
+
 		//Is USER Logged?
 	}
 
@@ -45,6 +46,9 @@ class Loga_cliente extends CI_Controller{
 	    $f_pass = array('name' => 'pass', 'id' => 'pass', 'value' => '', 'type' => 'password', 'class' => 'form-control','placeholder'=>'Senha');
 	    echo form_open('loga_cliente/check_credentials', $aPropForm);
 	?>
+	<script type="text/javascript"> <!-- DATA FROM BACKEND-->
+    	var urlbase = '<?php echo base_url(); ?>';
+	</script>
 	<div class="container">
     	<div class="reg-block">
 	        <div class="row">
@@ -249,9 +253,20 @@ class Loga_cliente extends CI_Controller{
 		$this->form_validation->set_rules('pass', 'Senha', 'trim|required|min_length[6]|max_length[32]|callback_check_pass');
 
 		if ($this->form_validation->run() == FALSE){
+<<<<<<< HEAD
 			//$data['title'] = "Agath | Login ";
 			//$this->load->view('loga_cliente_v');
 			redirect('Loga_cliente/index2');
+=======
+			/* $this->load->view('loga_cliente_v');
+			 $data['title'] = "Agath | Login ";
+			$this->load->view('login/loga_cliente_head', $data);
+			*/
+		$this->session->set_userdata('msg', 1); //Nao conseguiu logar | Veja as demais msgs em view/log/loga_cliente_footer
+		redirect('Loga_cliente/index2', 'refresh');
+
+
+>>>>>>> d4f8db6be2db10701da5311e964210c31814106b
 		}
 		else{
 			// VAlida com os dados da Base;
@@ -336,6 +351,7 @@ class Loga_cliente extends CI_Controller{
 	function check_pass($pass){
 		$hash = $this->loga_cliente_m->get_hash($this->input->post('email',TRUE)); // pega o password(hash) que foi armazenado na base.
 		$check = $this->mylogin->check_password($hash, $pass);
+		//var_dump($check); die;
 		if($check){
 			return $check;
 		}else{
@@ -346,69 +362,6 @@ class Loga_cliente extends CI_Controller{
 	}
 
 
-
-	function messagem(){
-		// -- Carregado o Helper msg, Envia a variavel de erro para o error
-		if (validation_errors() != NULL) {
-			$FormError = validation_errors();
-			$title = 'Falta algo!';
-			modalBootstapError($title, $FormError);
-		}
-	    //$informa = $this -> uri -> segment(3, 0);
-	    $informa = $this->session->userdata('msg_login');
-
-            //var_dump($informa); die();
-            if (is_numeric($informa)) {
-                switch ($informa) {
-                    case 1 :
-                        $title = 'Ooops! ';
-                        $msg = "Usuário e/ou senha estão incorretos!<br><br> <a href='" . base_url() . "maillost'> Recuperar senha por e-mail </a>";
-                        modalBootstapError($title, $msg);
-                        break;
-                    case 2 :
-                        $title = 'Ooops! ';
-                        $msg = "Para <b>acesso</b> ao sistema <br>É necessário realizar o <b>login!</b>";
-                        modalBootstapError($title, $msg);
-                        break;
-                    case 3 :
-                        $title = 'Sucesso!';
-                        $msg = "<b>Deslogado</b> com sucesso, para novo acesso, refaça o login!</b>";
-                        modalBootstapWarning($title, $msg);
-                        break;
-                    case 4 :
-                        $title = 'Sucesso!';
-                        $msg = "<b>Email ENVIADO </b> com sucesso, para RESET de senha.</b>";
-                        modalBootstapSuccess($title, $msg);
-                        break;
-                    case 5 :
-                        $title = 'Sucesso!';
-                        $msg = "Nova <b> SENHA </b>foi gravada com sucesso.</b>";
-                        modalBootstapSuccess($title, $msg);
-                        break;
-                    case 6 :
-                        $title = 'Ooops! ';
-                        $msg = "Tive problemas e <b>NÃO</b> pude gravar a senha.";
-                        modalBootstapError($title, $msg);
-                        break;
-                    case 7 :
-                        $title = 'Sucesso! ';
-                        $msg = "Cadastro <b> ativado. </b>";
-                        modalBootstapSuccess($title, $msg);
-                        break;
-                    case 8 :
-                        $title = 'Ooops! ';
-                        $msg = "Tive problemas e <b>NÃO</b> ativei a canta <br> solcite a geração de outro. <a href='" . base_url(). 'maincliente/resend_codigo' ."'>" ."Gerar outro codigo"."</a>";
-                        modalBootstapError($title, $msg);
-                        break;
-
-                    default :
-                    //redirect('user/adduser/index/', 'refresh');  msgSuccess
-                }
-            }
-  
-
-           $this->session->sess_destroy();
-	}
 
 
 

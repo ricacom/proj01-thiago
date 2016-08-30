@@ -5,7 +5,7 @@
 //** 2) Fixes scroll animation not working in Opera. 
 //urlbase
 //var img = '<img src="' + urlbase ='/assets/img/up.png" style="width:51px; height:42px" />';
-console.log(urlbase);
+//console.log(urlbase);
 var img =  urlbase + 'assets/img/up.png ';
 var scrolltotop={
 	//startline: Integer. Number of pixels from top of doc scrollbar is scrolled before showing control

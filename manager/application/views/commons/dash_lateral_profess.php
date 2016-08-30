@@ -1,13 +1,28 @@
-<div class="left-inner">
+
+
+
+<style type="text/css">
+    .lt-border{padding: 10px;}
+    .tag-box-v3{ border-radius:8px;}
+    .box{width:92%; margin:0 auto;}
+</style>
+
+<div class="box">
+
+    <div class="row">
+        <div class="col-md-3"> <!-- Menu Lateral esquerdo -->
+            <div class="tag-box-v3 lt-border">
+                <div class="left-inner">
                         <h3>Clinica Novo Horizonte</h3>
                         <span class="font-s">Medicina Nuclear</span>   <br><br> 
-
                         <div class="row">
                             <div class="col-md-3">
-                                <img alt="" src="<?= base_url()?>assets/img/clients/thiago.png">
+                                <img alt="" class="imguser" src="<?= base_url()?>assets/img/user.jpg">
                             </div>
                             <div class="col-md-9">
-                                Logado como: <br><span>Dr. Thiago Dutra</span><br><span class="color-red"> Administrador </span>
+                                Logado: <br><span>Dr. <?= $_SESSION['fullname']; ?></span>
+                                    <br>
+                                <span class="color-red"> Clinica nome </span>
                             </div>
 
                         </div>
@@ -15,7 +30,7 @@
                         <hr>
 
                         <ul class="list-unstyled save-job">
-                            <li><i class="fa fa-plus"></i> <a href="#">Cadastrar médicos</a></li>
+                            <li><i class="fa fa-plus"></i> <a href="#">Configuração</a></li>
                             <li><i class="fa fa-eye"></i> <a href="#">Ver cadastrados</a></li>
                             <li><i class="fa fa-gear"></i> <a href="#">Configuração</a></li>
                         </ul>    
@@ -126,8 +141,7 @@
 
                         <h3>Mensagens</h3>
                         <div class="people-say margin-bottom-20">
-                            <img class="imguser" alt="" src="<?= base_url()?>assets/img/user.jpg">
-                            
+                            <img class="imguser" alt="" src="assets/img/user.jpg">
                             <div class="overflow-h">
                                 <span><b>Eva Maria Kl.</b></span>
                                 <small class="hex pull-right">5 - hours ago</small>
@@ -136,7 +150,7 @@
                         </div>
 
                         <div class="people-say margin-bottom-20">
-                            <img class="imguser" alt="" src="<?= base_url()?>assets/img/user.jpg">
+                            <img class="imguser" alt="" src="assets/img/user.jpg">
                             <div class="overflow-h">
                                 <span><b>Christian Draxler</b></span>
                                 <small class="hex pull-right">2 - days ago</small>
@@ -147,3 +161,7 @@
 
                         <button class="btn-u btn-block" type="button"> Ver Todas</button>
                     </div>
+
+
+            </div>
+        </div>
