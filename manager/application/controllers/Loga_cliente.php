@@ -249,7 +249,9 @@ class Loga_cliente extends CI_Controller{
 		$this->form_validation->set_rules('pass', 'Senha', 'trim|required|min_length[6]|max_length[32]|callback_check_pass');
 
 		if ($this->form_validation->run() == FALSE){
-			 $this->load->view('loga_cliente_v');
+			//$data['title'] = "Agath | Login ";
+			//$this->load->view('loga_cliente_v');
+			redirect('Loga_cliente/index2');
 		}
 		else{
 			// VAlida com os dados da Base;
