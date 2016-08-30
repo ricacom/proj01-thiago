@@ -9,7 +9,14 @@ class Loga_cliente extends CI_Controller{
 		$this->load->model(array('loga_cliente_m', 'cadastra_cliente_m')); 		// Load Model
 		$this->lang->load('login','pt-br');			// Language
 
-
+/*
+		require_once(APPPATH.'../../vendor/autoload.php');
+		$fb = new Facebook\Facebook([
+		  'app_id' 					=> FB_ID,
+		  'app_secret' 				=> FB_APP_SECRET,
+		  'default_graph_version' 	=> FB_DF_GRAPH_V,
+		]);
+		*/
 		//Is USER Logged?
 	}
 
@@ -25,12 +32,14 @@ class Loga_cliente extends CI_Controller{
 	}
 
 	function index2(){
+	
 		require_once(APPPATH.'../../vendor/autoload.php');
 		$fb = new Facebook\Facebook([
 		  'app_id' 					=> FB_ID,
 		  'app_secret' 				=> FB_APP_SECRET,
 		  'default_graph_version' 	=> FB_DF_GRAPH_V,
 		]);
+		
 
 		$helper = $fb->getRedirectLoginHelper();
 		$permissions = ['email', 'user_likes', 'public_profile']; // optional
@@ -121,12 +130,14 @@ class Loga_cliente extends CI_Controller{
 
 
 	public function login_callback_fb(){
+		
 		require_once(APPPATH.'../../vendor/autoload.php'); 
 		$fb = new Facebook\Facebook([
 		  'app_id' 					=> FB_ID,
 		  'app_secret' 				=> FB_APP_SECRET,
 		  'default_graph_version' 	=> FB_DF_GRAPH_V,
 		]);
+		
 		$helper = $fb->getRedirectLoginHelper();
 		//var_dump($helper); die;
 
@@ -253,24 +264,29 @@ class Loga_cliente extends CI_Controller{
 		$this->form_validation->set_rules('pass', 'Senha', 'trim|required|min_length[6]|max_length[32]|callback_check_pass');
 
 		if ($this->form_validation->run() == FALSE){
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			//$data['title'] = "Agath | Login ";
 			//$this->load->view('loga_cliente_v');
-			redirect('Loga_cliente/index2');
-=======
+			//redirect('Loga_cliente/index2');
+//=======
 			/* $this->load->view('loga_cliente_v');
 			 $data['title'] = "Agath | Login ";
 			$this->load->view('login/loga_cliente_head', $data);
 			*/
+			
 		$this->session->set_userdata('msg', 1); //Nao conseguiu logar | Veja as demais msgs em view/log/loga_cliente_footer
-		redirect('Loga_cliente/index2', 'refresh');
+		//redirect('Loga_cliente/index2', 'refresh');
 
+			var_dump($_SESSION);
+			die('Die here!');
 
->>>>>>> d4f8db6be2db10701da5311e964210c31814106b
+// >>>>>>> d4f8db6be2db10701da5311e964210c31814106b
 		}
 		else{
 			// VAlida com os dados da Base;
 			$query = $this->loga_cliente_m->get_data_user($this->input->post('email'));
+		//	var_dump($this->input->post('email'));
+		//	var_dump($query); die;
 
 			if($query != NULL) {// if the user's credentials validated...
 				$aDadosUser = array(
@@ -289,7 +305,7 @@ class Loga_cliente extends CI_Controller{
 				//GravalOG
 				$gravaLog 		= $this->mylog->writeLog($aDataLog);
 				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
-
+				
 				if($gravaLog AND $gravaSession){
 					//sucesso no login
 					redirect('dashboard', 'refresh');
@@ -312,6 +328,7 @@ class Loga_cliente extends CI_Controller{
 				//echo " Usuário e/ou senha incorreta!";
 				$this->session->set_userdata('msg_login', '1');
 				redirect('loga_cliente', 'refresh');
+				//var_dump($_SESSION);
 			}
 		} //Fecha ELSE FORM Validation
 	}// CLose method check_credentials
