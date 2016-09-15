@@ -103,7 +103,7 @@ class Cadastra_cliente_m extends CI_Model{
 function set_default_group($id_cliente){
 		$dataSQL = array( // ARRAY para Inset no banco
 		'users_id' 				=> $id_cliente,
-		'group_id' 				=> 4, //PACIENTE
+		'grupo_id' 				=> 4, //PACIENTE
 		'datacad' 				=> $this->set_agora(),
 	);
 

@@ -24,17 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = '';
-//$config['base_url'] = 'http://dev.local:8080/exemplos-livro-ci/site-institucional';
 if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
-	$config['base_url']	= 'http://ricacomlocal.com.br:8080/agath/manager/';	
-}
-if($_SERVER['SERVER_NAME'] == 'dev.local'){
-		$config['base_url']	= 'http://dev.local/agath/manager/';	
-}
-if($_SERVER['SERVER_NAME'] == 'ricacom.com.br'){
+	$config['base_url']	= 'http://ricacomlocal.com.br:8080/proj01-thiago/manager/';	
+}else{
 	$config['base_url']	= 'http://ricacom.com.br/agath/manager/';
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +40,8 @@ if($_SERVER['SERVER_NAME'] == 'ricacom.com.br'){
 | variable so that it is blank.
 |
 */
-if($_SERVER['SERVER_NAME'] == 'dev.local'){
-	$config['index_page'] = 'index.php';
+if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
+	$config['index_page'] = '';
 }else{
 	$config['index_page'] = 'index.php?';
 }
@@ -67,7 +61,7 @@ if($_SERVER['SERVER_NAME'] == 'dev.local'){
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-if($_SERVER['SERVER_NAME'] == 'dev.local'){
+if($_SERVER['SERVER_NAME'] == 'ricacomlocal.com.br'){
 	$config['uri_protocol']	= 'REQUEST_URI';
 }else{
 	$config['uri_protocol']	= 'AUTO';
@@ -156,8 +150,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-//$config['composer_autoload'] = FALSE;
-$config['composer_autoload'] = './vendor/autoload.php';
+$config['composer_autoload'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

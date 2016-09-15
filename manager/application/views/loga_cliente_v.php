@@ -120,7 +120,8 @@
                 <div class="row margin-bottom-10">
                     <div class="col-md-10 col-md-offset-1">
                     <div class="text-center"> Cadastrar usando a sua conta </div>
-                    <a href='<?php echo $fb_url; ?>' class="btn-u btn-u-dark-blue btn100 text-center" role="button">
+                    <!--a href='<?php echo $fb_url; ?>' class="btn-u btn-u-dark-blue btn100 text-center" role="button"-->
+                    <?php echo $url_fb; ?>
                     <i class="fa fa-facebook"> </i> acebook
                     </a>
                     <?php // echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>'; ?>

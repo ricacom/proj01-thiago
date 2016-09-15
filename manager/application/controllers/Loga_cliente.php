@@ -1,36 +1,26 @@
 <?php 
 
 class Loga_cliente extends CI_Controller{
+	private $fb;
 
 	function __construct(){
 		parent::__construct();
 		$this->load->helper(array('form', 'url', 'path', 'html', 'msg'));
-		$this->load->library(array('session', 'form_validation', 'mylog', 'mylogin', 'logged'));
+		$this->load->library(array('form_validation', 'mylog', 'mylogin', 'logged'));
 		$this->load->model(array('loga_cliente_m', 'cadastra_cliente_m')); 		// Load Model
 		$this->lang->load('login','pt-br');			// Language
 
-/*
-		require_once(APPPATH.'../../vendor/autoload.php');
-		$fb = new Facebook\Facebook([
-		  'app_id' 					=> FB_ID,
-		  'app_secret' 				=> FB_APP_SECRET,
-		  'default_graph_version' 	=> FB_DF_GRAPH_V,
+		$this->fb = new Facebook\Facebook([
+		    'app_id' => FB_ID,
+		    'app_secret' => FB_APP_SECRET,
+		    'default_graph_version' => FB_DF_GRAPH_V,
+		    'persistent_data_handler'=>'session'
 		]);
-		*/
-		//Is USER Logged?
 	}
 
-	function index(){
-		$user = $this->session->userdata('id_cliente');
-		//var_dump($user);
-		if($user){
-			redirect('dashboard', 'refresh');
-		}else{ //Nao está logado, precisa ver a tela de login.
-			$this->logged->is_logged_in_pagelogin();
-		}
 
-	}
 
+/*
 	function index2(){
 	
 		require_once(APPPATH.'../../vendor/autoload.php');
@@ -126,7 +116,167 @@ class Loga_cliente extends CI_Controller{
 	<?php
 		$this->load->view('login/loga_cliente_footer');
 	}  //Close Index Method
+*/	
 
+	/*
+	function index(){
+		$user = $this->session->userdata('id_cliente');
+		//var_dump($user);
+		if($user){
+			redirect('dashboard', 'refresh');
+		}else{ //Nao está logado, precisa ver a tela de login.
+			$this->logged->is_logged_in_pagelogin();
+		}
+
+	}
+	*/
+/*
+	public function index(){
+		if($this->session->userdata('id_cliente')){
+			redirect('dashboard', 'refresh');
+		}else{ //Nao está logado, precisa ver a tela de login.
+			$this->logged->is_logged_in_pagelogin();
+		}
+	}
+	*/
+
+	public function index(){
+	    $helper = $this->fb->getRedirectLoginHelper();
+	    //$permissions = ['email'];
+	    $permissions = ['email', 'user_likes', 'public_profile']; // optional
+	    $loginUrl = $helper->getLoginUrl(base_url('/loga_cliente/logado'), $permissions);
+
+	    $data['url_fb'] = '<a href="' . htmlspecialchars($loginUrl) . '">Logar com Facebook!</a>';
+	    $this->load->view('welcome_message', $data);
+	    //$this->load->view('loga_cliente_v', $data);
+	    
+	}
+
+	public function logado(){
+
+	    $helper = $this->fb->getRedirectLoginHelper();
+
+	    try {
+	        $accessToken = $helper->getAccessToken();
+	    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+	        echo 'Erro da Graph API: ' . $e->getMessage();
+	        exit;
+	    } catch(Facebook\Exceptions\FacebookSDKException $e) {
+	        echo 'Erro da Facebook SDK: ' . $e->getMessage();
+	        exit;
+	    }
+
+	    if (isset($accessToken)) {
+	        $this->session->set_userdata('facebook_access_token', (string) $accessToken);
+	        try {
+	            //$response = $this->fb->get('/me?fields=id,name,email,picture', $accessToken);
+	             $response = $this->fb->get('/me?fields=id,name,email,age_range,gender,is_verified,locale,birthday', $accessToken);
+	        } catch(Facebook\Exceptions\FacebookResponseException $e) {
+	            echo 'Erro da Graph API: ' . $e->getMessage();
+	            exit;
+	        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+	            echo 'Erro da Facebook SDK: ' . $e->getMessage();
+	            exit;
+	        }
+	    } elseif ($helper->getError()) {
+	        echo "Requisição negada para o usuário.";
+	        exit;
+	    }else{
+	        echo "Erro desconhecido.";
+	        exit;
+	    }
+
+	   // $user = $response->getGraphUser();
+
+	    //var_dump($response);
+			$user = $response->getGraphUser()->asArray();
+			//var_dump($user); die;
+
+			//Dados vindo do facebook API
+			$aDadosUser = array(
+				'id_cliente' 			=> $user['id'],
+				'fullname' 				=> $user['name'],
+				'email' 				=> $user['email'],
+				'age_range' 			=> $user['age_range']['min'],
+				'gender' 				=> $user['gender'],
+				'is_verified' 			=> $user['is_verified'],
+				'locale' 				=> $user['locale'],
+				'is_logged_cli'			=> TRUE,
+
+			);
+			//var_dump($aDadosUser); die;
+
+			$userExist = $this->loga_cliente_m->id_user_exist($user['id']);
+		//	var_dump($userExist);
+
+			if($userExist){ //Esse user vindo do Facebook está cadastrado, Devo Logar o usuário
+				$aDataLog = array( // LOG o evento de autenticar | Envia os dados para o logar no DB
+					'cod' 				=> LOG_ID_LOGIN_SUCCESS,
+					'msg' 				=> LOG_MSG_LOGIN_SUCCESS,
+					'idUser'			=> $aDadosUser['id_cliente'],
+				);
+				//GravalOG
+				$gravaLog 		= $this->mylog->writeLog($aDataLog);
+				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
+
+				if($gravaLog AND $gravaSession){	//sucesso no login
+					redirect('dashboard', 'refresh');
+
+				}else{		//var_dump($this->session->all_userdata());
+					echo "Nao Gravei, o log e nao registrei a session"; die;
+				}
+
+			}else{			//Devo gravar o user na Dase.
+				$gravaUserFb = $this->cadastra_cliente_m->grava_user_fb($aDadosUser);
+
+				$aDataLog = array( // LOG o evento de autenticar | Envia os dados para o logar no DB
+					'cod' 				=> LOG_ID_LOGIN_SUCCESS,
+					'msg' 				=> LOG_MSG_LOGIN_SUCCESS,
+					'idUser'			=> $aDadosUser['id_cliente'],
+				);
+				$gravaLog 		= $this->mylog->writeLog($aDataLog);
+				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
+
+				if($gravaUserFb AND $gravaLog AND $gravaSession){	//sucesso no login
+					redirect('dashboard', 'refresh');
+
+				}else{		//var_dump($this->session->all_userdata());
+					echo "Nao Gravei, o log e nao registrei a session"; die;
+				}
+			}
+
+
+			/*
+	    foreach ($user as $key => $value) {
+	        echo $key.": ".$value." ";
+	    }
+	    */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 
 	public function login_callback_fb(){
@@ -175,9 +325,9 @@ class Loga_cliente extends CI_Controller{
 			}
 		}
 
+*/
 
-
-
+/*
 
 	function status_fb(){
 
@@ -258,29 +408,18 @@ class Loga_cliente extends CI_Controller{
 			}
 	}//close se está logado
 }// close status_fb
-
+*/
 	function check_credentials(){
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('pass', 'Senha', 'trim|required|min_length[6]|max_length[32]|callback_check_pass');
 
 		if ($this->form_validation->run() == FALSE){
-//<<<<<<< HEAD
-			//$data['title'] = "Agath | Login ";
-			//$this->load->view('loga_cliente_v');
-			//redirect('Loga_cliente/index2');
-//=======
 			/* $this->load->view('loga_cliente_v');
 			 $data['title'] = "Agath | Login ";
 			$this->load->view('login/loga_cliente_head', $data);
 			*/
-			
 		$this->session->set_userdata('msg', 1); //Nao conseguiu logar | Veja as demais msgs em view/log/loga_cliente_footer
 		//redirect('Loga_cliente/index2', 'refresh');
-
-			var_dump($_SESSION);
-			die('Die here!');
-
-// >>>>>>> d4f8db6be2db10701da5311e964210c31814106b
 		}
 		else{
 			// VAlida com os dados da Base;
@@ -305,7 +444,7 @@ class Loga_cliente extends CI_Controller{
 				//GravalOG
 				$gravaLog 		= $this->mylog->writeLog($aDataLog);
 				$gravaSession 	= $this->mylog->writeSession($aDadosUser);
-				
+
 				if($gravaLog AND $gravaSession){
 					//sucesso no login
 					redirect('dashboard', 'refresh');
